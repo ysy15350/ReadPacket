@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/base_form">
+
+
+    <include layout="@layout/form_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_recommendationCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp80"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp13"
+                android:gravity="center"
+                android:text="@string/default_text"
+                tools:text="a8a2c"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:gravity="center"
+                android:text="我的邀请码"
+                android:textColor="@color/text_title"
+                android:textSize="@dimen/sp16" />
+        </LinearLayout>
+
+
+        <View style="@style/view_line_vertical" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <custom_view.qrcode.CanvasRQ
+                android:id="@+id/qr_code"
+                android:layout_width="@dimen/dp80"
+                android:layout_height="@dimen/dp80"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/dp13"
+                app:iconHeight="@dimen/dp10"
+                app:iconWidth="@dimen/dp10"
+                app:qrCodeHeight="@dimen/dp80"
+                app:qrCodeWidth="@dimen/dp80"
+                app:url="http://www.360vrdh.com:8080/api/appDownload" />
+
+            <TextView
+                android:id="@+id/tv_qrcode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp50"
+                android:gravity="center"
+                android:text="我的邀请二维码"
+                android:textColor="@color/text_title"
+                android:textSize="@dimen/sp16" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginStart="@dimen/dp13"
+            android:gravity="center_vertical"
+            android:text="邀请总人数"
+            android:textColor="@color/text_title" />
+
+        <TextView
+            android:id="@+id/tv_refereecount"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginStart="@dimen/dp13"
+            android:gravity="center_vertical"
+            android:text="@string/default_number"
+            android:textColor="@color/text_money"
+            android:textSize="@dimen/sp26" />
+
+    </LinearLayout>
+
+
+    <View style="@style/view_line" />
+
+
+    <custom_view.x_view.XListView
+        android:id="@+id/xListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/devider_color"
+        android:dividerHeight="@dimen/dp16"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_nodata"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp100"
+            android:layout_height="@dimen/dp100"
+            android:src="@mipmap/icon_nodata" />
+
+        <TextView
+            android:id="@+id/tv_nodata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp20"
+            android:gravity="center"
+            android:text="暂无数据，点击刷新"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/sp20" />
+    </LinearLayout>
+
+</LinearLayout>

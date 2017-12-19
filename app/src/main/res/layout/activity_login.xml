@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bg_login"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp93"
+            android:layout_height="@dimen/dp93"
+            android:src="@mipmap/ic_launcher" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="@dimen/dp20"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginTop="@dimen/dp290"
+        android:background="@mipmap/icon_bg_login_edit"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            style="@style/base_edit_layout"
+
+            android:layout_margin="@dimen/dp30">
+
+            <ImageView
+                style="@style/edit_icon"
+                android:src="@mipmap/icon_username" />
+
+            <EditText
+                android:id="@+id/et_userName"
+                style="@style/base_edit"
+                android:hint="@string/hint_login_username" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/base_edit_layout"
+            android:layout_marginEnd="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp30">
+
+            <ImageView
+                style="@style/edit_icon"
+                android:src="@mipmap/icon_password" />
+
+            <EditText
+                android:id="@+id/et_password"
+                style="@style/base_edit"
+                android:hint="@string/hint_login_password"
+                android:inputType="textPassword" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_forgot_pwd"
+            style="@style/tab1_profit_item_title"
+            android:layout_gravity="right"
+            android:layout_marginRight="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp13"
+            android:text="@string/forgot_pwd_underline" />
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/btn_ok"
+            android:layout_marginBottom="@dimen/dp40"
+            android:layout_marginEnd="@dimen/dp30"
+            android:layout_marginStart="@dimen/dp30"
+            android:layout_marginTop="@dimen/dp13" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp100"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="还没账号？"
+            android:textColor="#666666"
+            android:textSize="@dimen/sp22" />
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:autoLink="all"
+            android:gravity="center"
+            android:text="@string/btn_register_underline"
+            android:textColor="@color/btn_normal"
+            android:textSize="@dimen/sp22" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

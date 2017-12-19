@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_pop_main"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent">
+
+    <LinearLayout
+        android:id="@+id/ll_red_packet"
+        android:layout_width="@dimen/dp240"
+        android:layout_height="@dimen/dp340"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/dp120"
+        android:background="@mipmap/bg_red_packet"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dp220"
+            android:text="@string/default_money"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp28"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_close"
+        android:layout_width="@dimen/dp40"
+        android:layout_height="@dimen/dp40"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/dp80"
+        android:background="@drawable/shape_close_circle"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:src="@mipmap/icon_close" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,132 @@
+<resources>
+    <string name="app_name">旺财红包</string>
+
+    <!-- 首页选项卡文本 -->
+    <string name="tab1name">红包</string>
+    <string name="tab2name">我的</string>
+
+    <string name="default_text">-</string>
+    <string name="default_number">0</string>
+    <string name="default_money">0.00</string>
+    <string name="default_pwd">******</string>
+
+
+    <!-- 我的顶部 -->
+    <string name="setting">设置</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+
+
+    <string name="title_phone">手机号</string>
+    <string name="title_code">验证码</string>
+    <string name="title_pwd_new">新密码</string>
+    <string name="title_pwd_new_ok">确认新密码</string>
+
+
+    <string name="hint_register_phone">请输入手机号</string>
+    <string name="hint_register_code">请输入验证码</string>
+    <string name="hint_register_password">请输入密码</string>
+    <string name="hint_register_recommend">请输入邀请码(非必填)</string>
+
+    <!--文本框提示-->
+    <string name="hint_edit">请输入</string>
+    <string name="hint_login_username">用户名</string>
+    <string name="hint_login_password">密码</string>
+    <string name="forgot_pwd_underline"><u>忘记密码？</u></string>
+
+    <!-- 按钮文本 -->
+    <string name="btn_get_code">获取验证码</string>
+    <string name="btn_register">立即注册</string>
+    <string name="btn_register_underline"><u>立即注册</u></string>
+    <string name="btn_login">立即登录</string>
+    <string name="btn_login_underline"><u>立即登录</u></string>
+    <string name="btn_ok">确定</string>
+    <string name="btn_cancel">取消</string>
+    <string name="btn_save">保存</string>
+
+    <!-- 注册标题 -->
+    <string name="register_phone_error">手机号格式错误</string>
+    <string name="register_code_error">请输入验证码</string>
+    <string name="register_password_error">至少设置6位密码</string>
+    <string name="register_password_different">密码输入不一致</string>
+    <string name="agreement"><u>《注册协议》</u></string>
+
+
+    <!--个人中心菜单-->
+    <string name="myinfo_title1">头像</string>
+    <string name="myinfo_title2">姓名</string>
+    <string name="myinfo_title2_1">昵称</string>
+    <string name="myinfo_title3">身份证号码</string>
+    <string name="myinfo_title4">支付宝绑定</string>
+    <string name="myinfo_title5">微信绑定</string>
+    <string name="myinfo_title6">营业执照</string>
+    <string name="myinfo_title7">手机号码</string>
+    <string name="myinfo_title8">地址</string>
+    <string name="myinfo_title9">主营范围</string>
+    <string name="myinfo_title10">商家介绍</string>
+    <string name="myinfo_title11">修改密码</string>
+    <string name="myinfo_title12">设置支付密码</string>
+
+    <!--系统奖励-->
+    <string name="prize_title0">总收益(元)</string>
+    <string name="prize_title1">昨日奖励</string>
+    <string name="prize_title2">历史总奖励</string>
+    <string name="prize_title3">分享奖励</string>
+    <string name="prize_title4">红包奖励</string>
+
+
+    <!-- 我的菜单 -->
+
+    <string name="tab3_account_title1">余额</string>
+    <string name="tab3_account_title2">收益</string>
+    <string name="tab3_account_title3">可发红包</string>
+
+    <string name="tab3_menu_0">账户余额</string>
+    <string name="tab3_menu_1">充值</string>
+    <string name="tab3_menu_2">提现</string>
+    <string name="tab3_menu_3">账单</string>
+    <string name="tab3_menu_4">奖励</string>
+    <string name="tab3_menu_5">邀请</string>
+    <string name="tab3_menu_6">分享</string>
+
+
+    <string name="recharge">充值</string>
+    <string name="recharge_ok">确认充值</string>
+    <string name="withdraw">提现</string>
+    <string name="withdraw_ok">确认提现</string>
+    <string name="donation">捐款</string>
+    <string name="donation_ok">确认捐款</string>
+
+    <!--添加银行卡-->
+    <string name="add_bank_title1">持卡人</string>
+    <string name="add_bank_title2">手机号</string>
+    <string name="add_bank_title3">卡号</string>
+    <string name="add_bank_title4">银行</string>
+    <string name="add_bank_title5">开户行</string>
+
+    <!--************************ 添加银行卡************************-->
+    <string name="add_bank_card_mustName">请输入姓名</string>
+    <string name="add_bank_card_mustCard">请输入银行卡号</string>
+
+    <!--************************ 添加银行卡end************************-->
+
+
+    <!--设置-->
+    <string name="setting1">清除缓存</string>
+    <string name="setting2">检测更新</string>
+    <string name="setting3">注销</string>
+
+    <!-- 标题右边菜单文本 -->
+    <string name="select_title">筛选</string>
+
+
+    <!-- 下拉刷新 -->
+    <string name="header_hint_refresh_normal">下拉刷新</string>
+    <string name="header_hint_refresh_ready">松开刷新数据</string>
+    <string name="header_hint_refresh_loading">正在加载...</string>
+    <string name="header_hint_refresh_time">上次更新时间：</string>
+    <string name="footer_hint_load_normal">查看更多</string>
+    <string name="footer_hint_load_ready">松开载入更多</string>
+
+
+</resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/base_form">
+
+    <!--充值、提现操作提示-->
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp80">
+
+            <TextView
+                android:id="@+id/tv_form_title"
+                style="@style/form_title"
+                android:textColor="#02221f" />
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="@dimen/dp50"
+                android:layout_height="@dimen/dp50"
+                android:layout_marginTop="@dimen/dp25"
+                android:background="@null"
+                android:contentDescription="@string/app_name"
+                android:padding="@dimen/dp10"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/icon_back_grey" />
+
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:layout_width="@dimen/dp162"
+        android:layout_height="@dimen/dp162"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp173"
+        android:src="@mipmap/icon_account_result" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp44"
+        android:textColor="#222222"
+        android:textSize="@dimen/sp30"
+        tools:text="提现成功" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp13"
+        android:textColor="#666666"
+        android:textSize="@dimen/sp22"
+        tools:text="你的提现将会在次日24点前到账" />
+
+
+</LinearLayout>

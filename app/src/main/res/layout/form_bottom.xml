@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/dp90"
+    android:layout_alignParentBottom="true"
+    android:gravity="center_vertical">
+
+    <!-- 中间椭圆 -->
+
+    <LinearLayout
+        android:layout_width="@dimen/dp96"
+        android:layout_height="@dimen/dp90"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_btn_add"
+        android:gravity="center"
+        android:orientation="vertical"></LinearLayout>
+
+    <!-- 底部带边线背景_屏幕宽度 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp64"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_main_bottom"></LinearLayout>
+
+    <!-- 白色背景遮挡中间按钮部分出现的横线 -->
+
+    <LinearLayout
+        android:layout_width="@dimen/dp84"
+        android:layout_height="@dimen/dp2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/dp26"
+        android:background="@color/white"
+        android:gravity="center"
+        android:orientation="vertical"></LinearLayout>
+
+    <!-- 第一部分 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab1"
+        android:layout_width="@dimen/dp180"
+        android:layout_height="@dimen/dp64"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_tab1"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:contentDescription="@string/tab1name"
+            android:src="@drawable/selector_tab1"
+            android:tag="tab_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp5"
+            android:tag="tab_txt"
+            android:text="@string/tab1name"
+            android:textColor="@drawable/selector_tab_text"
+            android:textSize="@dimen/sp22" />
+    </LinearLayout>
+
+    <!-- 第二部分图片和文字 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab2"
+        android:layout_width="@dimen/dp96"
+        android:layout_height="@dimen/dp90"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_tab2"
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:contentDescription="@string/tab2name"
+            android:src="@mipmap/icon_add"
+            android:tag="tab_img" />
+
+    </LinearLayout>
+
+    <!-- 第三部分 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tab3"
+        android:layout_width="@dimen/dp180"
+        android:layout_height="@dimen/dp64"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_tab3"
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:contentDescription="@string/tab2name"
+            android:src="@drawable/selector_tab2"
+            android:tag="tab_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp5"
+            android:tag="tab_txt"
+            android:text="@string/tab2name"
+            android:textColor="@drawable/selector_tab_text"
+            android:textSize="@dimen/sp22" />
+    </LinearLayout>
+
+</RelativeLayout>

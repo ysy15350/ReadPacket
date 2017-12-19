@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <!--充值-->
+
+    <include layout="@layout/form_head" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp70"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:text="@string/tab3_menu_0"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp30"
+            android:text="￥"
+            android:textColor="@color/text_money"
+            android:textSize="@dimen/sp32" />
+
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp2"
+            android:layout_weight="1"
+            android:text="@string/default_money"
+            android:textColor="@color/text_money"
+            android:textSize="@dimen/sp32" />
+
+        <Button
+            android:id="@+id/btn_recharge"
+            android:layout_width="@dimen/dp70"
+            android:layout_height="@dimen/dp50"
+            android:layout_marginEnd="@dimen/dp20"
+            android:background="@drawable/shape_btn"
+            android:text="@string/recharge"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp22" />
+
+
+    </LinearLayout>
+    <!--金额 end-->
+
+
+    <TextView
+        android:id="@+id/tv_red_packet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp53"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp13"
+        android:text="红包金额（请选择）"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/sp22" />
+
+
+    <GridView
+        android:id="@+id/gv_red_packet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:horizontalSpacing="@dimen/dp1"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="4"
+        android:verticalSpacing="@dimen/dp1"></GridView>
+
+    <TextView
+        android:id="@+id/tv_luck_num"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp53"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/dp13"
+        android:text="幸运数字（请选择）"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/sp22" />
+
+
+    <GridView
+        android:id="@+id/gv_luck_num"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:horizontalSpacing="@dimen/dp1"
+        android:listSelector="@android:color/transparent"
+        android:numColumns="5"
+        android:verticalSpacing="@dimen/dp1"></GridView>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="@dimen/dp150"
+        android:layout_height="@dimen/dp65"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="@dimen/dp13"
+        android:layout_marginStart="@dimen/dp13"
+        android:layout_marginTop="@dimen/dp20"
+        android:background="@drawable/shape_btn_hand_out_red_packet"
+        android:text="发红包"
+        android:textColor="@color/white"
+        android:textSize="@dimen/sp22" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp13"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:text="您还有"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/sp22" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp13"
+            android:layout_marginStart="@dimen/dp13"
+            android:text="@string/default_number"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp22"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="次幸运机会发红包"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp22" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

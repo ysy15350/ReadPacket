@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <!-- 个人资料 -->
+
+    <include layout="@layout/form_head" />
+
+    <!-- 菜单 -->
+
+    <View style="@style/view_line" />
+
+    <!--蓝牙打印机-->
+    <LinearLayout
+        android:id="@+id/ll_menu_1"
+        style="@style/my_info_item">
+
+        <ImageView
+            style="@style/edit_icon"
+            android:src="@mipmap/icon_setting1" />
+
+        <TextView
+            style="@style/my_info_title"
+            android:layout_weight="1"
+            android:text="@string/setting1" />
+
+
+        <ImageView style="@style/item_right" />
+
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+    <!--检测更新-->
+    <LinearLayout
+        android:id="@+id/ll_menu_2"
+        style="@style/my_info_item">
+
+        <ImageView
+            style="@style/edit_icon"
+            android:src="@mipmap/icon_setting2" />
+
+        <TextView
+            style="@style/my_info_title"
+            android:layout_weight="1"
+            android:text="@string/setting2" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/my_info_title"
+            android:layout_marginEnd="@dimen/dp13"
+            android:text="@string/default_text" />
+
+        <ImageView style="@style/item_right" />
+
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+    <View
+        style="@style/view_line"
+        android:layout_marginTop="@dimen/dp20" />
+
+    <!--检测更新-->
+    <LinearLayout
+        android:id="@+id/ll_menu_3"
+        style="@style/my_info_item">
+
+        <ImageView
+            style="@style/edit_icon"
+            android:src="@mipmap/icon_setting3" />
+
+        <TextView
+            style="@style/my_info_title"
+            android:layout_weight="1"
+            android:text="@string/setting3" />
+
+
+        <ImageView style="@style/item_right" />
+
+    </LinearLayout>
+
+</LinearLayout>

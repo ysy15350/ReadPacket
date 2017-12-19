@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#E25754</color>
+
+
+    <!-- 纯色 -->
+    <color name="white">#ffffff</color>
+    <color name="black">#000</color>
+    <color name="blue">#499BF7</color>
+    <color name="red">#FF0000</color>
+
+    <color name="transparent">#00000000</color>
+
+
+    <color name="read_dialog_bg">#2C2C2C</color>
+    <color name="read_dialog_button_select">#E25754</color>
+
+    <color name="read_bg_default">#CEC29C</color>
+    <color name="read_bg_1">#CCEBCC</color>
+    <color name="read_bg_2">#37342F</color>
+    <color name="read_bg_3">#D1CEC5</color>
+    <color name="read_bg_4">#001C27</color>
+
+
+    <color name="read_font_default">#2C2C2C</color>
+    <color name="read_font_1">#2F332D</color>
+    <color name="read_font_2">#92918C</color>
+    <color name="read_font_3">#383429</color>
+    <color name="read_font_4">#627176</color>
+
+    <!-- ***********************背景颜色*********************** -->
+
+
+    <!-- 窗体默认背景颜色 -->
+    <color name="bg_form">#efefef</color>
+
+    <!-- 窗体标题背景色 -->
+    <color name="bg_form_head">#f66e44</color>
+
+    <!-- 密码文本框背景颜色 -->
+    <color name="bg_password">#50194e5f</color>
+
+    <!-- ***********************背景颜色end*********************** -->
+
+
+    <!-- ***********************文本字体颜色*********************** -->
+
+    <!-- 底部tabBar -->
+    <color name="main_bottom_menu">#666666</color>
+    <color name="main_bottom_menu_1">#f66e44</color>
+
+    <!-- 文本颜色 -->
+    <!-- 标题 -->
+    <color name="text_title">#414141</color>
+    <!-- 内容 -->
+    <color name="text_content">#666666</color>
+    <!-- 数字 -->
+    <color name="text_number">#fde401</color>
+
+    <!-- 金额文本 -->
+    <color name="text_money">#fd7d00</color>
+
+    <!-- 分割线颜色 -->
+    <color name="devider_color">#ebebeb</color>
+
+    <!-- 提示文本 -->
+    <color name="text_hint">#999999</color>
+
+    <!-- 输入框文本 -->
+    <color name="text_edit">#222222</color>
+
+    <!-- ***********************按钮颜色*********************** -->
+
+
+    <!-- 按钮文本颜色 -->
+    <!-- 默认按钮颜色 -->
+    <color name="btn_normal">#fa842a</color>
+    <!-- 不可用 -->
+    <color name="btn_disable">#888888</color>
+    <color name="bg_btn1">#ffb93d</color>
+    <color name="bg_btn2">#ffb900</color>
+    <color name="bg_btn3">#06cb9d</color>
+    <color name="bg_btn4">#f7b034</color>
+
+    <!-- 按钮背景颜色 -->
+    <color name="bg_btn_normal">#2a2c2d</color>
+
+    <!-- 按钮背景颜色 -->
+    <color name="bg_btn_disable">#2a2c2d</color>
+
+    <!-- ***********************按钮颜色end*********************** -->
+
+</resources>

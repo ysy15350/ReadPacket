@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white">
+
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="@dimen/dp80"
+            android:layout_height="@dimen/dp50"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dp20"
+            android:background="@drawable/dialog_wait_bg"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white" />
+
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="@string/header_hint_refresh_loading"
+            android:textColor="@color/text_content"
+            android:textSize="@dimen/sp22"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
+
+    <View style="@style/view_line" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp130"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp50"
+            android:layout_height="@dimen/dp50"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            style="@style/text_content"
+            android:layout_marginStart="@dimen/dp13"
+            android:text="@string/app_name"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp28"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+</LinearLayout>

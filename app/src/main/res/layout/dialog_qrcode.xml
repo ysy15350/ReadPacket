@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/dp40"
+    android:layout_marginStart="@dimen/dp40">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp10"
+        android:background="@drawable/shape_dialog"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp58"
+            android:background="@drawable/shape_dialog_top"
+            android:gravity="center"
+            android:text="我的邀请二维码"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp20" />
+
+
+        <custom_view.qrcode.CanvasRQ
+            android:id="@+id/qr_code"
+            android:layout_width="@dimen/dp340"
+            android:layout_height="@dimen/dp340"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp13"
+            android:layout_marginTop="@dimen/dp13"
+            app:iconHeight="@dimen/dp40"
+            app:iconWidth="@dimen/dp40"
+            app:qrCodeHeight="@dimen/dp340"
+            app:qrCodeWidth="@dimen/dp340"
+            app:url="http://www.360vrdh.com:8080/api/appDownload" />
+
+        <View style="@style/view_line" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp55"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_1"
+                android:layout_width="@dimen/dp187"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="保存到手机"
+                android:textColor="@color/text_title"
+                android:textSize="@dimen/sp18" />
+
+            <View style="@style/view_line_vertical" />
+
+            <Button
+                android:id="@+id/btn_2"
+                android:layout_width="@dimen/dp187"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:text="分享给朋友"
+                android:textColor="@color/text_title"
+                android:textSize="@dimen/sp18" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_close"
+        android:layout_width="@dimen/dp35"
+        android:layout_height="@dimen/dp35"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/shape_close_circle"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp15"
+            android:layout_height="@dimen/dp15"
+            android:src="@mipmap/icon_close" />
+    </LinearLayout>
+
+</RelativeLayout>

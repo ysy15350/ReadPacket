@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--个人资料-->
+
+        <LinearLayout style="@style/base_form">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:height="@dimen/dp60"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/dp13"
+                android:text="请绑定持卡人本人的银行卡"
+                android:textColor="#989898"
+                android:textSize="@dimen/sp22" />
+
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/add_bank_title1" />
+
+                <EditText
+                    android:id="@+id/et_userName"
+                    style="@style/base_edit" />
+
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/add_bank_title2" />
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    style="@style/base_edit"
+                    android:inputType="phone" />
+
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/add_bank_title3" />
+
+                <EditText
+                    android:id="@+id/et_bank_card"
+                    style="@style/base_edit"
+                    android:inputType="number" />
+
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout
+                android:id="@+id/ll_menu_4"
+                style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/add_bank_title4" />
+
+                <TextView
+                    android:id="@+id/tv_bank"
+                    style="@style/base_edit"
+                    android:gravity="center_vertical"
+                    android:hint="请选择" />
+
+                <ImageView style="@style/item_right" />
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/add_bank_title5" />
+
+                <EditText
+                    android:id="@+id/et_open_bank"
+                    style="@style/base_edit"
+                    android:hint="**银行**支行(分行)" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_ok"
+                style="@style/btn_ok"
+                android:layout_marginBottom="@dimen/dp20"
+                android:layout_marginEnd="@dimen/dp13"
+                android:layout_marginStart="@dimen/dp13"
+                android:layout_marginTop="@dimen/dp20"
+                android:text="确认添加" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

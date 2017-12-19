@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <!--******************二维码******************-->
+    <!--自定义view :CanvasRQ  -->
+    <declare-styleable name="QrCode">
+        <attr name="iconWidth" format="dimension" />
+        <attr name="iconHeight" format="dimension" />
+        <attr name="qrCodeWidth" format="dimension" />
+        <attr name="qrCodeHeight" format="dimension" />
+        <attr name="url" format="string" />
+    </declare-styleable>
+    <!--******************二维码end******************-->
+
+</resources>

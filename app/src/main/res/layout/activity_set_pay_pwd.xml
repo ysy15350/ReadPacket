@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--个人资料-->
+
+        <LinearLayout style="@style/base_form">
+
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="支付密码" />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    style="@style/base_edit"
+                    android:inputType="textPassword" />
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="确认密码" />
+
+                <EditText
+                    android:id="@+id/et_password1"
+                    style="@style/base_edit"
+                    android:inputType="textPassword" />
+
+
+            </LinearLayout>
+
+            <Button
+                android:id="@id/btn_ok"
+                style="@style/btn_ok"
+                android:layout_margin="@dimen/dp13" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

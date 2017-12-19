@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/bg_tab3"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btn_setting"
+                    android:layout_width="@dimen/dp40"
+                    android:layout_height="@dimen/dp40"
+                    android:layout_gravity="right"
+                    android:layout_marginEnd="@dimen/dp13"
+                    android:layout_marginTop="@dimen/dp48"
+                    android:background="@null"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/icon_setting" />
+
+                <LinearLayout
+                    android:id="@+id/ll_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp77"
+                    android:layout_marginBottom="@dimen/dp25"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:id="@+id/img_head"
+                        android:layout_width="@dimen/dp77"
+                        android:layout_height="@dimen/dp77"
+                        android:layout_marginStart="@dimen/dp20"
+                        android:src="@mipmap/icon_head" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/dp20"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_nickName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp10"
+                            android:text="@string/default_text"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp22" />
+
+                        <TextView
+                            android:id="@+id/tv_mobile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dp13"
+                            android:text="@string/default_text"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/sp18" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="@dimen/dp30"
+                        android:layout_height="@dimen/dp30"
+                        android:layout_marginEnd="@dimen/dp13"
+                        android:src="@mipmap/icon_right_white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--top end-->
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp90"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp20"
+                    android:text="@string/tab3_menu_0"
+                    android:textColor="@color/text_title"
+                    android:textSize="@dimen/sp24" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp30"
+                    android:text="￥"
+                    android:textColor="@color/text_money"
+                    android:textSize="@dimen/sp32" />
+
+                <TextView
+                    android:id="@+id/tv_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp2"
+                    android:text="@string/default_money"
+                    android:textColor="@color/text_money"
+                    android:textSize="@dimen/sp32" />
+
+
+            </LinearLayout>
+            <!--金额 end-->
+
+            <!--账户信息-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp90"
+                android:background="@color/white">
+
+
+                <LinearLayout style="@style/tab3_profit_item_layout">
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        style="@style/tab3_money"
+                        android:text="@string/default_money" />
+
+                    <TextView
+                        style="@style/tab1_profit_item_title"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="@string/tab3_account_title1" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/tab3_profit_item_layout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_profit"
+                        style="@style/tab3_money"
+                        android:text="@string/default_money" />
+
+                    <TextView
+                        style="@style/tab1_profit_item_title"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="@string/tab3_account_title2" />
+                </LinearLayout>
+
+                <LinearLayout style="@style/tab3_profit_item_layout">
+
+                    <TextView
+                        android:id="@+id/tv_chance_count"
+                        style="@style/tab3_money"
+                        android:text="@string/default_number" />
+
+                    <TextView
+                        style="@style/tab1_profit_item_title"
+                        android:layout_marginTop="@dimen/dp5"
+                        android:text="@string/tab3_account_title3" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!--账户信息end-->
+            <LinearLayout
+                style="@style/tab3_menu_item_grid"
+                android:layout_marginTop="@dimen/dp20">
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_1"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu1" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_1" />
+
+                </LinearLayout>
+
+                <View style="@style/view_line_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_2"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu2" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_2" />
+                </LinearLayout>
+
+                <View style="@style/view_line_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_3"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu3" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_3" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <LinearLayout style="@style/tab3_menu_item_grid">
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_4"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu4" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_4" />
+                </LinearLayout>
+
+                <View style="@style/view_line_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_5"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu5" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_5" />
+                </LinearLayout>
+
+                <View style="@style/view_line_vertical" />
+
+                <LinearLayout
+                    android:id="@+id/ll_menu_6"
+                    style="@style/layout_same_item_horizon">
+
+                    <ImageView
+                        style="@style/tab3_menu_icon"
+                        android:src="@mipmap/icon_tab2_menu6" />
+
+                    <TextView
+                        style="@style/tab3_menu_item_text"
+                        android:text="@string/tab3_menu_6" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

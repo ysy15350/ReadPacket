@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <!--充值-->
+
+    <include layout="@layout/form_head" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp74"
+        android:layout_margin="@dimen/dp13"
+        android:background="@drawable/shape_dialog"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="@dimen/dp45"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp15"
+            android:src="@mipmap/icon_zhifubao" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp20"
+            android:gravity="center_vertical"
+            android:text="支付宝充值"
+            android:textColor="#222222"
+            android:textSize="@dimen/sp24" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp13"
+        android:layout_marginStart="@dimen/dp13"
+        android:background="@drawable/shape_dialog"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp24"
+            android:text="充值余额"
+            android:textColor="#222222"
+            android:textSize="@dimen/sp24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp80"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp13">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="￥"
+                android:textColor="#222222"
+                android:textSize="@dimen/sp32" />
+
+            <EditText
+                android:id="@+id/et_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/hint_edit"
+                android:inputType="number"
+                android:textColor="#222222"
+                android:textColorHint="@color/text_hint"
+                android:textSize="@dimen/sp28" />
+        </LinearLayout>
+
+        <View style="@style/view_line_short" />
+
+
+        <Button
+            android:id="@+id/btn_ok"
+            style="@style/btn_ok"
+            android:layout_marginBottom="@dimen/dp13"
+            android:layout_marginEnd="@dimen/dp20"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp53"
+            android:text="@string/recharge_ok" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_pay_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/text_content"
+        android:textSize="@dimen/sp16" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal|bottom"
+        android:paddingBottom="@dimen/dp115">
+
+        <ImageView
+            android:layout_width="@dimen/dp30"
+            android:layout_height="@dimen/dp30"
+            android:src="@mipmap/icon_safe" />
+
+        <TextView
+            style="@style/tab1_profit_item_title"
+            android:layout_marginStart="@dimen/dp13"
+            android:text="安全充值" />
+    </LinearLayout>
+
+</LinearLayout>

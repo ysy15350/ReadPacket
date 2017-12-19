@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+
+    <include layout="@layout/form_head" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp120"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp60"
+            android:layout_marginStart="@dimen/dp20"
+            android:gravity="center_vertical"
+            android:text="@string/prize_title0"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp24" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp60">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp20"
+                android:text="￥"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+
+            <TextView
+                android:id="@+id/tv_totalPrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp2"
+                android:text="@string/default_money"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--金额 end-->
+
+    <View style="@style/view_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="@dimen/dp10"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp20"
+            android:background="@color/red"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp25" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:layout_margin="@dimen/dp13"
+            android:gravity="center_vertical"
+            android:text="@string/prize_title1"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp25" />
+
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+
+    <LinearLayout style="@style/tab3_menu_item_grid">
+
+        <LinearLayout
+            android:id="@+id/ll_menu_1"
+            style="@style/layout_same_item_horizon">
+
+            <TextView
+                style="@style/tab3_menu_item_text"
+                android:text="@string/prize_title3"
+                android:textSize="@dimen/sp24" />
+
+            <TextView
+                android:id="@+id/tv_yesterdaySharePrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp2"
+                android:text="@string/default_money"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+
+        </LinearLayout>
+
+        <View style="@style/view_line_vertical" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_2"
+            style="@style/layout_same_item_horizon">
+
+            <TextView
+                style="@style/tab3_menu_item_text"
+                android:text="@string/prize_title4"
+                android:textSize="@dimen/sp24" />
+
+            <TextView
+                android:id="@+id/tv_yesterdayRedPacketPrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp2"
+                android:text="@string/default_money"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <View style="@style/view_line" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="@dimen/dp10"
+            android:layout_height="@dimen/dp45"
+            android:layout_marginStart="@dimen/dp20"
+            android:background="@color/red"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="@dimen/sp25" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:layout_margin="@dimen/dp13"
+            android:gravity="center_vertical"
+            android:text="@string/prize_title2"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp25" />
+
+    </LinearLayout>
+
+
+    <View style="@style/view_line" />
+
+    <LinearLayout style="@style/tab3_menu_item_grid">
+
+        <LinearLayout
+            android:id="@+id/ll_menu_4"
+            style="@style/layout_same_item_horizon">
+
+            <TextView
+                style="@style/tab3_menu_item_text"
+                android:text="@string/prize_title3"
+                android:textSize="@dimen/sp24" />
+
+            <TextView
+                android:id="@+id/tv_totalSharePrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp2"
+                android:text="@string/default_money"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+        </LinearLayout>
+
+        <View style="@style/view_line_vertical" />
+
+        <LinearLayout
+            android:id="@+id/ll_menu_5"
+            style="@style/layout_same_item_horizon">
+
+            <TextView
+                style="@style/tab3_menu_item_text"
+                android:text="@string/prize_title4"
+                android:textSize="@dimen/sp24" />
+
+            <TextView
+                android:id="@+id/tv_totalRedPacketPrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/dp2"
+                android:text="@string/default_money"
+                android:textColor="@color/text_money"
+                android:textSize="@dimen/sp32" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_form">
+
+
+    <LinearLayout style="@style/base_form">
+
+        <!--充值-->
+
+        <include layout="@layout/form_head" />
+
+        <TextView
+            android:id="@+id/tv_red_packet"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp13"
+            android:text="红包金额（请选择）"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp22" />
+
+
+        <GridView
+            android:id="@+id/gv_red_packet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:horizontalSpacing="@dimen/dp1"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="4"
+            android:verticalSpacing="@dimen/dp1"></GridView>
+
+        <TextView
+            android:id="@+id/tv_luck_num"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp53"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dp13"
+            android:text="幸运数字（请选择）"
+            android:textColor="@color/text_title"
+            android:textSize="@dimen/sp22" />
+
+
+        <GridView
+            android:id="@+id/gv_luck_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:horizontalSpacing="@dimen/dp1"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="5"
+            android:verticalSpacing="@dimen/dp1"></GridView>
+
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="@dimen/dp150"
+            android:layout_height="@dimen/dp65"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginEnd="@dimen/dp13"
+            android:layout_marginStart="@dimen/dp13"
+            android:layout_marginTop="@dimen/dp20"
+            android:background="@drawable/shape_btn_hand_out_red_packet"
+            android:text="发红包"
+            android:textColor="@color/white"
+            android:textSize="@dimen/sp22" />
+
+        <TextView
+            style="@style/tab1_profit_item_title"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/dp20"
+            android:layout_marginTop="@dimen/dp20"
+            android:text="您还有0次幸运机会发红包" />
+
+
+    </LinearLayout>
+</ScrollView>
