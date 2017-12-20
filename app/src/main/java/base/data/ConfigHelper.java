@@ -47,7 +47,7 @@ public class ConfigHelper extends DbUtilsXutils3<ConfigInfo> {
 
         ConfigInfo configInfo1 = new ConfigInfo();
         configInfo1.setIsDebug(1);
-        configInfo1.setServerUrl("192.168.31.176");//192.168.31.176  192.168.0.144
+        configInfo1.setServerUrl("192.168.0.107");//192.168.31.176  192.168.0.144
         configInfo1.setServerPort(8080);
         configInfo1.setProjectName("api");
 

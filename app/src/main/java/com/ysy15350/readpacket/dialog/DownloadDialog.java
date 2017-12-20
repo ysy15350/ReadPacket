@@ -70,6 +70,39 @@ public class DownloadDialog extends Dialog {
         mContent = content;
 
         initView();// 初始化按钮事件
+
+        initDownload();
+    }
+
+    private void initDownload() {
+        //下载框架：http://blog.csdn.net/linergou/article/details/52780913
+        // （https://github.com/wlfcolin/file-downloader/blob/master/README-zh.md）
+
+        // 1、创建Builder
+        FileDownloadConfiguration.Builder builder = new FileDownloadConfiguration.Builder(mContext);
+
+        // 2.配置Builder
+        // 配置下载文件保存的文件夹
+        builder.configFileDownloadDir(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +
+                "FileDownloader");
+        // 配置同时下载任务数量，如果不配置默认为2
+        builder.configDownloadTaskSize(3);
+        // 配置失败时尝试重试的次数，如果不配置默认为0不尝试
+        builder.configRetryDownloadTimes(5);
+        // 开启调试模式，方便查看日志等调试相关，如果不配置默认不开启
+        builder.configDebugMode(true);
+        // 配置连接网络超时时间，如果不配置默认为15秒
+        builder.configConnectTimeout(25000);// 25秒
+
+        // 3、使用配置文件初始化FileDownloader
+        FileDownloadConfiguration configuration = builder.build();
+        FileDownloader.init(configuration);
+
+        FileDownloader.registerDownloadStatusListener(mOnFileDownloadStatusListener);
+        FileDownloader.registerDownloadFileChangeListener(mOnDownloadFileChangeListener);
+
+        //下载前删除
+        //FileDownloader.delete(mUrl, true, mOnDeleteDownloadFileListener);// 删除单个下载文件
     }
 
     private void initView() {
@@ -223,34 +256,6 @@ public class DownloadDialog extends Dialog {
     private void download() {
         try {
 
-            //下载框架：http://blog.csdn.net/linergou/article/details/52780913
-            // （https://github.com/wlfcolin/file-downloader/blob/master/README-zh.md）
-
-            // 1、创建Builder
-            FileDownloadConfiguration.Builder builder = new FileDownloadConfiguration.Builder(mContext);
-
-            // 2.配置Builder
-            // 配置下载文件保存的文件夹
-            builder.configFileDownloadDir(Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator +
-                    "FileDownloader");
-            // 配置同时下载任务数量，如果不配置默认为2
-            builder.configDownloadTaskSize(3);
-            // 配置失败时尝试重试的次数，如果不配置默认为0不尝试
-            builder.configRetryDownloadTimes(5);
-            // 开启调试模式，方便查看日志等调试相关，如果不配置默认不开启
-            builder.configDebugMode(true);
-            // 配置连接网络超时时间，如果不配置默认为15秒
-            builder.configConnectTimeout(25000);// 25秒
-
-            // 3、使用配置文件初始化FileDownloader
-            FileDownloadConfiguration configuration = builder.build();
-            FileDownloader.init(configuration);
-
-            FileDownloader.registerDownloadStatusListener(mOnFileDownloadStatusListener);
-            FileDownloader.registerDownloadFileChangeListener(mOnDownloadFileChangeListener);
-
-            //下载前删除
-            //FileDownloader.delete(mUrl, true, mOnDeleteDownloadFileListener);// 删除单个下载文件
 
             FileDownloader.start(mUrl);// 如果文件没被下载过，将创建并开启下载，否则继续下载，自动会断点续传（如果服务器无法支持断点续传将从头开始下载）
 

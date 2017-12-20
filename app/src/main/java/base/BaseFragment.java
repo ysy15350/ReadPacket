@@ -2,11 +2,14 @@ package base;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ysy15350.readpacket.author.LoginActivity;
 
 import org.xutils.x;
 
@@ -148,6 +151,8 @@ public abstract class BaseFragment extends Fragment implements IView {
         try {
             String token = BaseData.getToken();
             boolean isLogin = !CommFun.isNullOrEmpty(token);
+
+
             return isLogin;
         } catch (Exception e) {
             e.printStackTrace();
@@ -155,6 +160,32 @@ public abstract class BaseFragment extends Fragment implements IView {
 
         return false;
     }
+
+
+    /**
+     * 是否登录
+     * @param must 是否必须登录，如果true,跳转到登录页面
+     * @return
+     */
+    protected boolean isLogin(boolean must) {
+        try {
+            String token = BaseData.getToken();
+            boolean isLogin = !CommFun.isNullOrEmpty(token);
+
+            if (!isLogin && must) {
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+
+            return isLogin;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
 
     @Override
     public void showMsg(String msg) {

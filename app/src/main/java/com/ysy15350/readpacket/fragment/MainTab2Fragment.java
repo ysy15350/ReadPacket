@@ -176,7 +176,7 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
      */
     @Event(value = R.id.ll_info)
     private void ll_infoClick(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, MyInfoActivity.class));
         //startActivity(new Intent(mContext, PayDemoActivity.class));
     }
@@ -188,7 +188,7 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
      */
     @Event(value = R.id.ll_menu_1)
     private void ll_menu_1Click(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, RechargeActivity.class));
         //startActivity(new Intent(mContext, PayDemoActivity.class));
     }
@@ -200,7 +200,7 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
      */
     @Event(value = R.id.ll_menu_2)
     private void ll_menu_2Click(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, WithdrawActivity.class));//提现
 
     }
@@ -212,7 +212,7 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
      */
     @Event(value = R.id.ll_menu_3)
     private void ll_menu_3Click(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, OrderListActivity.class));
 
     }
@@ -224,19 +224,19 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
      */
     @Event(value = R.id.ll_menu_4)
     private void ll_menu_4Click(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, PrizeActivity.class));//奖励
 
     }
 
     /**
-     * 奖励
+     * 邀请
      *
      * @param view
      */
     @Event(value = R.id.ll_menu_5)
     private void ll_menu_5Click(View view) {
-        if (isLogin())
+        if (isLogin(true))
             startActivity(new Intent(mContext, InvitationsListActivity.class));//奖励
 
     }

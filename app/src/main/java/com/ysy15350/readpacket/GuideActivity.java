@@ -160,6 +160,8 @@ public class GuideActivity extends BaseActivity {
                 intent = new Intent(GuideActivity.this, LoginActivity.class);
             }
 
+            intent = new Intent(GuideActivity.this, MainActivity.class);
+
             GuideActivity.this.startActivity(intent);
             GuideActivity.this.finish();
         }

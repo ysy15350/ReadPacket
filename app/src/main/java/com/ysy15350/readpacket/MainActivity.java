@@ -155,9 +155,9 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
     @Override
     protected void onResume() {
         super.onResume();
-        if (!isLogin()) {
-            this.finish();
-        }
+//        if (!isLogin()) {
+//            this.finish();
+//        }
 
         if (!isCheckVersion) {
             mPresenter.checkversion();//检测版本号
