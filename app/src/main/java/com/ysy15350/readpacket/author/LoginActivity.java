@@ -4,6 +4,7 @@ package com.ysy15350.readpacket.author;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.ysy15350.readpacket.MainActivity;
@@ -19,6 +20,7 @@ import base.model.UserInfo;
 import base.mvp.MVPBaseActivity;
 import common.CommFun;
 import common.CommFunAndroid;
+import custom_view.pop.PopExit;
 
 @ContentView(R.layout.activity_login)
 public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPresenter> implements LoginViewInterface {
@@ -206,6 +208,26 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
         startActivity(intent);
 
         this.finish();
+    }
+
+    /**
+     * 点击返回按钮间隔时间
+     */
+    private long exitTime = 0;
+
+    private PopExit popExit = null;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+
+
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+
+            gotoMainActivity();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 

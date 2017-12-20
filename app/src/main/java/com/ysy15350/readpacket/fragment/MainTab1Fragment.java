@@ -104,7 +104,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
         try {
             status = 1;
-            if (getActivity() != null && isLogin()) {
+            if (getActivity() != null) {
 
                 showWaitDialog("红包加载中...");
                 getRedPacketList();
@@ -130,11 +130,11 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
     public void getRedPacketList() {
         Log.d(TAG, "getRedPacketList() called isLogin=" + isLogin());
-        if (isLogin()) {
+        //if (isLogin()) {
             if (mPresenter != null) {
                 mPresenter.getRedPacketList(page, pageSize);
             }
-        }
+        //}
     }
 
     @Override
@@ -264,7 +264,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                         if (redPacketInfo != null) {
 
                             mRedPacketInfo = redPacketInfo;
-                            if (isLogin()) {
+                            if (isLogin(true)) {
 
                                 UserInfo userInfo = BaseData.getInstance().getUserInfo();
                                 if (userInfo != null) {

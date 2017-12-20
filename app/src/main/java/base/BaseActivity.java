@@ -19,6 +19,7 @@ import android.view.View;
 import com.ysy15350.readpacket.BuildConfig;
 import com.ysy15350.readpacket.GuideActivity;
 import com.ysy15350.readpacket.R;
+import com.ysy15350.readpacket.author.LoginActivity;
 import com.ysy15350.readpacket.dialog.DownloadDialog;
 
 import org.xutils.view.annotation.Event;
@@ -196,6 +197,30 @@ public class BaseActivity extends AppCompatActivity implements IView {
 //        }
         return isLogin;
 
+    }
+
+    /**
+     * 是否登录
+     * @param must 是否必须登录，如果true,跳转到登录页面
+     * @return
+     */
+    protected boolean isLogin(boolean must) {
+        try {
+            String token = BaseData.getToken();
+            boolean isLogin = !CommFun.isNullOrEmpty(token);
+
+            if (!isLogin && must) {
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                this.finish();
+            }
+
+            return isLogin;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
     /**
