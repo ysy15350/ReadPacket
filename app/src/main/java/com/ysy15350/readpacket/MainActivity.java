@@ -87,7 +87,7 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
     @Event(value = R.id.ll_tab2)
     private void ll_tab2Click(View view) {
 
-        if (isLogin()) {
+        if (isLogin(true)) {
 
             int grabRedPacketChanceCount = 0;
 
