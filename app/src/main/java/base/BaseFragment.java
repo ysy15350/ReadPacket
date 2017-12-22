@@ -14,6 +14,7 @@ import com.ysy15350.readpacket.author.LoginActivity;
 import org.xutils.x;
 
 import base.data.BaseData;
+import base.model.UserInfo;
 import common.CommFun;
 import common.CommFunAndroid;
 import common.message.MessageBox;
@@ -151,6 +152,12 @@ public abstract class BaseFragment extends Fragment implements IView {
         try {
             String token = BaseData.getToken();
             boolean isLogin = !CommFun.isNullOrEmpty(token);
+            if (!isLogin) {
+                UserInfo userInfo = BaseData.getUserInfo();
+                if (userInfo != null) {
+                    isLogin = !CommFun.isNullOrEmpty(userInfo.getUserid());
+                }
+            }
 
 
             return isLogin;
@@ -164,18 +171,28 @@ public abstract class BaseFragment extends Fragment implements IView {
 
     /**
      * 是否登录
+     *
      * @param must 是否必须登录，如果true,跳转到登录页面
      * @return
      */
     protected boolean isLogin(boolean must) {
         try {
-            String token = BaseData.getToken();
-            boolean isLogin = !CommFun.isNullOrEmpty(token);
+
+            boolean isLogin = isLogin();
 
             if (!isLogin && must) {
+
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+            }
+
+            UserInfo userInfo = BaseData.getUserInfo();
+            if (userInfo != null&&isLogin&& must) {
+
+                if(!CommFun.isNullOrEmpty(userInfo.getUserid())){
+
+                }
             }
 
             return isLogin;

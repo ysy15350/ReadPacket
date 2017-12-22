@@ -29,8 +29,20 @@ public class MyApplication extends Application {
 
     //友盟分享
     {
+        //查看签名：keytool -v -list -keystore ***.keystore
 
-        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        //微信开放平台：https://open.weixin.qq.com/cgi-bin/appdetail?t=manage/detail&type=app&lang=zh_CN&token=a37c4517478b300b4fc2bb7657be34ece7db1d8b&appid=wx0365398576a98012
+        //填写MD5签名；去掉 : 号
+
+//        MD5: B4:52:D0:D6:83:AE:AB:4E:C8:B1:74:52:E7:92:16:13
+//        SHA1: 39:A9:88:25:2B:76:26:9C:98:B8:4E:87:1A:85:19:F0:15:B4:83:08
+//        SHA256: 94:E3:90:8C:59:F7:CA:09:A2:78:2A:71:F0:11:A1:D7:3B:6C:2F:A7:0D:FF:04:96:83:59:8B:06:DC:14:5E:1B
+//        签名算法名称: SHA256withRSA
+//        版本: 3
+
+
+        PlatformConfig.setWeixin("wx0365398576a98012", "2907e62f272bc554d25b17916710f24c");
+        //PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
         PlatformConfig.setQQZone("100424468", "c7394704798a158208a74ab60104f0ba");
         PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
     }

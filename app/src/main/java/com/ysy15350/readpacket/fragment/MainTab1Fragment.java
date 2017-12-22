@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.ysy15350.readpacket.R;
+import com.ysy15350.readpacket.red_packet.HandOutRedPacketActivity;
 import com.ysy15350.readpacket.red_packet.RedPacketDetailActivity;
 
 import org.xutils.view.annotation.ContentView;
@@ -23,6 +24,8 @@ import api.model.RedPacketInfo;
 import base.data.BaseData;
 import base.model.UserInfo;
 import base.mvp.MVPBaseFragment;
+import common.CommFunAndroid;
+import custom_view.TextSwitchView;
 import custom_view.pop.PopRedPacket;
 import custom_view.red_packet.MoveModel;
 import custom_view.red_packet.RedPacketView;
@@ -78,6 +81,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
             @Override
             public void onRefresh() {
                 showWaitDialog("红包加载中...");
+                updateUserInfo();
                 getRedPacketList();
             }
         });
@@ -110,10 +114,39 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 getRedPacketList();
             }
 
+            updateUserInfo();
+
+            setTextSwitch("旺财红包,红包抢不停,红包新玩法");
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateUserInfo() {
+        UserInfo userInfo = BaseData.getUserInfo();
+        if (userInfo != null) {
+            bindUserInfo(userInfo);
+        }
+    }
+
+    /**
+     * 绑定用户信息
+     *
+     * @param userInfo
+     */
+    private void bindUserInfo(UserInfo userInfo) {
+
+
+        try {
+            if (userInfo != null) {
+                mHolder.setText(R.id.btn_createRedPacket, String.format("发红包(%d)", userInfo.getGrabchancecount()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -131,9 +164,9 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     public void getRedPacketList() {
         Log.d(TAG, "getRedPacketList() called isLogin=" + isLogin());
         //if (isLogin()) {
-            if (mPresenter != null) {
-                mPresenter.getRedPacketList(page, pageSize);
-            }
+        if (mPresenter != null) {
+            mPresenter.getRedPacketList(page, pageSize);
+        }
         //}
     }
 
@@ -195,19 +228,78 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
         pauseRedPacket();
     }
 
+
+    String[] messageArray;
+
     /**
-     * 通知
+     * 设置滚动通知
+     *
+     * @param result
+     */
+    private void setTextSwitch(String result) {
+        if (!CommFunAndroid.isNullOrEmpty(result)) {
+            messageArray = result.split(",");
+
+            TextSwitchView tv_message = mHolder.getView(R.id.tv_message);
+            // showMsg(result + (tv_message == null));
+
+            tv_message.setResources(messageArray);
+            tv_message.setTextStillTime(5000);
+        }
+    }
+
+
+    /**
+     * 发红包
      *
      * @param view
      */
-    @Event(value = R.id.tv_notify)
-    private void tv_notifyClick(View view) {
+    @Event(value = R.id.btn_createRedPacket)
+    private void btn_createRedPacketClick(View view) {
 
-//        MessageBox.show("开始");
-//        startRedPacket();
+        if (isLogin(true)) {
 
+            int grabRedPacketChanceCount = 0;
+
+            UserInfo userInfo = BaseData.getUserInfo();
+            if (userInfo != null) {
+                grabRedPacketChanceCount = userInfo.getGrabchancecount();
+            }
+
+            if (grabRedPacketChanceCount > 0) {
+                startActivity(new Intent(getActivity(), HandOutRedPacketActivity.class));
+            } else {
+                showMsg("你没有发红包的机会了");
+            }
+        }
 
     }
+
+
+    /**
+     * 关闭公告
+     *
+     * @param view
+     */
+    @Event(value = R.id.btn_close)
+    private void btn_closeClick(View view) {
+
+        mHolder.setVisibility_GONE(R.id.rl_notify);
+
+    }
+
+    /**
+     * 规则
+     *
+     * @param view
+     */
+    @Event(value = R.id.ll_rule)
+    private void ll_ruleRedPacketClick(View view) {
+
+        showMsg("规则");
+
+    }
+
 
     private void prepareRedPacket(List<RedPacketInfo> redPacketInfos) {
         if (mRedPacketView != null)
@@ -272,7 +364,7 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                                         showWaitDialog("服务器处理中...");
                                         mPresenter.grabRedPacket(redPacketInfo.getId());
                                     } else {
-                                        showMsg("余额不足，请充值");
+                                        showMsg("");
                                     }
                                 }
                             }

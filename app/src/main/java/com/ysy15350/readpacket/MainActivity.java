@@ -432,12 +432,11 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
         if (userInfo != null) {
             recommendationCode = userInfo.getRecommendationcode();
             String url = ConfigHelper.getServerImageUrl();
-            imgUrl=url+userInfo.getInviteimg();
+            imgUrl = url + userInfo.getInviteimg();
         }
 
         SHARE_MEDIA share_media = SHARE_MEDIA.WEIXIN_CIRCLE;
         String title = "旺财红包", content = "旺财红包是一款非常好玩的抢红包", url = ConfigHelper.getServerUrl(true) + "appShare?code=" + recommendationCode;
-
 
 
         if (mShareModel != null) {
@@ -485,8 +484,6 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {
-
-
 
 
         switch (requestCode) {
@@ -543,7 +540,7 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
         @Override
         public void onError(SHARE_MEDIA platform, Throwable t) {
             hideWaitDialog();
-            showMsg("分享" + platform + "失败");
+            showMsg("分享" + platform + "失败" + t.getMessage());
             Log.d(TAG, "UMShareListener onError() called with: platform = [" + platform + "], t = [" + t + "]");
             // Toast.makeText(MainActivity.this, "失败" + t.getMessage(), Toast.LENGTH_LONG).show();
             shareInfo.setStatus(-1);

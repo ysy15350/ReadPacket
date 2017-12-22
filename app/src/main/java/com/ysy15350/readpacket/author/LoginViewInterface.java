@@ -9,4 +9,6 @@ public interface LoginViewInterface {
 
     public void activateCallback(boolean isCache, Response response);
 
+    public void oauth_tokenCallback(boolean isCache, Response response);
+
 }

@@ -27,7 +27,7 @@ public class UserInfo {
     private int uid;
 
     @Column(name = "id")
-    private int id;//1:商家；2：经销商
+    private int id;
 
 
     @Column(name = "mobile")
@@ -47,27 +47,27 @@ public class UserInfo {
     private String nickname;
 
     @Column(name = "recommendationcode")
-    private String recommendationcode;
+    private String recommendationcode;//推荐码
 
     @Column(name = "refereecount")
-    private int refereecount;
+    private int refereecount;//邀请人数
 
 
     @Column(name = "cards")
     private String cards;
 
     @Column(name = "account")
-    private double account;
+    private double account;//账户金额(最终金额)
 
     @Column(name = "withdraw")
-    private double withdraw;
+    private double withdraw;//提现金额
 
     @Column(name = "withdrawrate")
-    private double withdrawrate;
+    private double withdrawrate;//提现费率（0.1代表0.1%）
 
 
     @Column(name = "grabchancecount")
-    private int grabchancecount;
+    private int grabchancecount;//可发红包次数
 
     @Column(name = "qrcode")
     private int qrcode;
@@ -76,14 +76,14 @@ public class UserInfo {
     private String qrcodeurl;
 
     @Column(name = "inviteimg")
-    private int inviteimg;
+    private int inviteimg;//邀请图片id
 
     @Column(name = "inviteimgurl")
-    private String inviteimgurl;
+    private String inviteimgurl;//邀请图片url
 
 
     @Column(name = "deviceId")
-    private String deviceId;
+    private String deviceId;//设备唯一ID
 
     @Column(name = "fullname")
     private String fullname;
@@ -92,10 +92,10 @@ public class UserInfo {
     private int headimg;
 
     @Column(name = "headimgurl")
-    private String headimgurl;//图片id
+    private String headimgurl;//头像
 
     @Column(name = "token")
-    private String token;//图片id
+    private String token;//
 
     @Column(name = "loginTimeStr")
     private String loginTimeStr;
@@ -105,6 +105,27 @@ public class UserInfo {
 
     @Column(name = "isLogin")
     private int isLogin;//1:商家；2：经销商
+
+
+    //-----------------支付宝相关---------------------
+
+    @Column(name = "userid")
+    private String userid;//支付宝用户id
+
+    @Column(name = "avatar")
+    private String avatar;//支付宝头像
+
+    @Column(name = "province")
+    private String province;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "userType")
+    private String userType;
+
+    @Column(name = "userstatus")
+    private String userstatus;
 
 
     public int getUid() {
@@ -313,5 +334,53 @@ public class UserInfo {
 
     public void setIsLogin(int isLogin) {
         this.isLogin = isLogin;
+    }
+
+    public String getUserid() {
+        return userid;
+    }
+
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
+
+    public String getUserstatus() {
+        return userstatus;
+    }
+
+    public void setUserstatus(String userstatus) {
+        this.userstatus = userstatus;
     }
 }

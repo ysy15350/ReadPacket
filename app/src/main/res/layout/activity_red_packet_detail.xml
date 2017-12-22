@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/base_form"
-    android:background="@mipmap/bg_red_packet_detail">
+    android:background="@color/white">
 
 
     <!--抢到红包，红包详情-->
@@ -102,14 +102,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="@dimen/dp140"
+        android:layout_marginTop="@dimen/dp80"
+        android:background="@mipmap/bg_red_packet_detail_1">
+
 
         <ImageView
             android:layout_width="@dimen/dp80"
             android:layout_height="@dimen/dp80"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/dp80"
+            android:layout_marginBottom="@dimen/dp13"
             android:src="@mipmap/icon_money" />
 
         <TextView
@@ -124,9 +127,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="@dimen/dp50"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#dd664b"
+        android:gravity="bottom"
         android:orientation="vertical">
 
         <Button
@@ -139,8 +143,9 @@
             android:id="@+id/tv_balance"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp40"
+            android:layout_marginBottom="@dimen/dp50"
             android:gravity="center"
-            android:text="查看我的红包明细"
+            android:text="查看红包明细"
             android:textColor="@color/white"
             android:textSize="@dimen/sp22" />
 

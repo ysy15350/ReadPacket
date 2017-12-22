@@ -44,7 +44,7 @@ public abstract class DbUtilsXutils3<T> implements DbUtils<T> {
                 .setDbName("log.db")
                 // 不设置dbDir时, 默认存储在app的私有目录.
                 .setDbDir(dbFile) // "sdcard"的写法并非最佳实践, 这里为了简单, 先这样写了.
-                .setDbVersion(8)
+                .setDbVersion(9)
                 .setDbOpenListener(new DbManager.DbOpenListener() {
                     @Override
                     public void onDbOpened(DbManager db) {
@@ -62,7 +62,7 @@ public abstract class DbUtilsXutils3<T> implements DbUtils<T> {
                         }
 
                         try {
-                            if (oldVersion < 8)
+                            if (oldVersion < 9)
                                 db.dropDb();
 
                             switch (oldVersion) {

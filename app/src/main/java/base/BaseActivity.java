@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import base.data.BaseData;
+import base.model.UserInfo;
 import common.AppStatusManager;
 import common.CommFun;
 import common.CommFunAndroid;
@@ -189,25 +190,36 @@ public class BaseActivity extends AppCompatActivity implements IView {
     }
 
     protected boolean isLogin() {
+        try {
+            String token = BaseData.getToken();
+            boolean isLogin = !CommFun.isNullOrEmpty(token);
+            if (!isLogin) {
+                UserInfo userInfo = BaseData.getUserInfo();
+                if (userInfo != null) {
+                    isLogin = !CommFun.isNullOrEmpty(userInfo.getUserid());
+                }
+            }
 
-        String token = BaseData.getToken();
-        boolean isLogin = !CommFun.isNullOrEmpty(token);
-//        if (isLogin) {
-//            isLogin = BaseData.getInstance().getUserInfo() != null;
-//        }
-        return isLogin;
 
+            return isLogin;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
+
 
     /**
      * 是否登录
+     *
      * @param must 是否必须登录，如果true,跳转到登录页面
      * @return
      */
     protected boolean isLogin(boolean must) {
         try {
-            String token = BaseData.getToken();
-            boolean isLogin = !CommFun.isNullOrEmpty(token);
+
+            boolean isLogin = isLogin();
 
             if (!isLogin && must) {
                 Intent intent = new Intent(this, LoginActivity.class);

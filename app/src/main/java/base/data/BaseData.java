@@ -8,6 +8,7 @@ import java.io.ObjectStreamException;
 import base.model.UserInfo;
 import common.CommFunAndroid;
 import common.cache.ACache;
+import common.string.JsonConvertor;
 
 public class BaseData {
 
@@ -80,7 +81,10 @@ public class BaseData {
     public static UserInfo getUserInfo() {
 
         try {
-            return UserHelper.getInstance().getLastLoginUserInfo();
+            UserInfo userInfo = UserHelper.getInstance().getLastLoginUserInfo();
+            if (userInfo != null)
+                Log.d(TAG, "getUserInfo() called userInfo=" + JsonConvertor.toJson(userInfo));
+            return userInfo;
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -17,6 +17,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -76,6 +77,31 @@
             android:layout_marginEnd="@dimen/dp30"
             android:layout_marginStart="@dimen/dp30"
             android:layout_marginTop="@dimen/dp13" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_ali_login"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp74"
+        android:layout_below="@id/ll_login"
+        android:layout_margin="@dimen/dp10"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="@dimen/dp35"
+            android:layout_height="@dimen/dp35"
+            android:layout_marginStart="@dimen/dp15"
+            android:src="@mipmap/icon_zhifubao" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp10"
+            android:gravity="center_vertical"
+            android:text="支付宝账户快速登录"
+            android:textColor="#222222"
+            android:textSize="@dimen/sp24" />
 
     </LinearLayout>
 

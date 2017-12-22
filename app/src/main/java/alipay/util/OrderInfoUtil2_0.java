@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Random;
 
 import alipay.SignUtils;
+import common.CommFun;
 
 public class OrderInfoUtil2_0 {
 
@@ -60,6 +61,54 @@ public class OrderInfoUtil2_0 {
 
         return keyValues;
     }
+
+
+    /**
+     * 构造支付宝会员授权信息查询参数列表
+     *
+     * @param pid
+     * @param auth_token
+     * @param app_auth_token
+     * @param rsa2
+     * @return
+     */
+    public static Map<String, String> buildUserInfoMap(String app_id, String auth_token, String app_auth_token, boolean rsa2) {
+        Map<String, String> keyValues = new HashMap<String, String>();
+
+        // 商户签约拿到的app_id，如：2013081700024223
+        keyValues.put("app_id", app_id);
+
+        // 接口名称， 固定值
+        keyValues.put("method", "alipay.user.info.share");
+
+        // 仅支持JSON
+        keyValues.put("format", "JSON");
+
+        // 请求使用的编码格式，如utf-8,gbk,gb2312等
+        keyValues.put("charset", "utf-8");
+
+        // 签名类型
+        keyValues.put("sign_type", rsa2 ? "RSA2" : "RSA");
+
+        // 请求使用的编码格式，如utf-8,gbk,gb2312等
+        keyValues.put("charset", "utf-8");
+
+        // 请求使用的编码格式，如utf-8,gbk,gb2312等
+        keyValues.put("timestamp", CommFun.getDateString("yyyy-MM-dd HH:mm:ss"));
+
+        // 调用的接口版本，固定为：1.0
+        keyValues.put("version", "1.0");
+
+        //针对用户授权接口，获取用户相关数据时，用于标识用户授权关系。
+        keyValues.put("auth_token", auth_token);
+
+        //
+        keyValues.put("app_auth_token", app_auth_token);
+
+
+        return keyValues;
+    }
+
 
     /**
      * 构造支付订单参数列表

@@ -37,6 +37,9 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
     private DrawHandler drawHandler;
     private int width;
     private int height;
+    //背景图片
+    private Bitmap m_book_bg1 = null;
+    private Bitmap m_book_bg2 = null;
     private Bitmap bitmap;
     private int bitmapWidth;
     private int bitmapHeight;
@@ -64,20 +67,101 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
     }
 
     private void init() {
+        setBackgroundColor(0xFFEE5859);
+        //setBackgroundColor(0x00000000);
         SurfaceHolder holder = getHolder();
         setZOrderOnTop(true);//true：显示在最顶层
-        //setZOrderMediaOverlay(true);//遵从view的层级关系，不盖住上面的view
+        setZOrderMediaOverlay(true);//遵从view的层级关系，不盖住上面的view
         holder.setFormat(PixelFormat.TRANSLUCENT);//设置背景透明
+
+
+        Log.d(TAG + "aaaaaaa", "init: width=" + width + "height=" + height);
+
 
         //mPaint = new Paint();
         //mBgBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_red_packet);
     }
+
+    public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int width = options.outWidth;
+        final int height = options.outHeight;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            //使用需要的宽高的最大值来计算比率
+            final int suitedValue = reqHeight > reqWidth ? reqHeight : reqWidth;
+            final int heightRatio = Math.round((float) height / (float) suitedValue);
+            final int widthRatio = Math.round((float) width / (float) suitedValue);
+
+            inSampleSize = heightRatio > widthRatio ? heightRatio : widthRatio;//用最大
+        }
+
+        return inSampleSize;
+    }
+
+    private void initBg() {
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inJustDecodeBounds = true;// 如果值设为true，那么将不返回实际的bitmap，也不给其分配内存空间，这样就避免了内存溢出。
+//
+//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_tab1_1, options);
+
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_tab1_1);
+        setBgBitmap1(bitmap);
+
+        Bitmap bitmap2 = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_tab1_2);
+        setBgBitmap2(bitmap2);
+
+//        int realwidth = options.outWidth;
+//        int realheight = options.outHeight;
+//        Log.d(TAG + "aaaaaaa", "initBg 图片真实高度" + realheight + "宽度" + realwidth);
+//
+//        // 计算缩放。
+//        int inSampleSize = calculateInSampleSize(options, 480, 300);
+//
+//        Log.d(TAG + "aaaaaaa", "initBg: inSampleSize=" + inSampleSize);
+//
+//
+//        options.inSampleSize = inSampleSize;
+//
+//        options.inJustDecodeBounds = false;
+//        bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.bg_tab1_1,
+//                options);
+
+
+    }
+
+
+    //设置页面背景
+    public Bitmap getBgBitmap1() {
+        return m_book_bg1;
+    }
+
+    //设置页面背景
+    public void setBgBitmap1(Bitmap BG) {
+        m_book_bg1 = BG;
+    }
+
+    //设置页面背景
+    public Bitmap getBgBitmap2() {
+        return m_book_bg2;
+    }
+
+    //设置页面背景
+    public void setBgBitmap2(Bitmap BG) {
+        m_book_bg2 = BG;
+    }
+
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         width = getMeasuredWidth();
         height = getMeasuredHeight();
+
+        initBg();
+
+        Log.d(TAG + "aaaaaaa", "onMeasure() called with: widthMeasureSpec = [" + widthMeasureSpec + "], heightMeasureSpec = [" + heightMeasureSpec + "]");
+        Log.d(TAG + "aaaaaaa", "onMeasure: width=" + width + "height=" + height);
     }
 
 
@@ -143,6 +227,11 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
     }
 
     public void start() {
+
+        Log.d(TAG+"bbbbbbbb", "start() called");
+
+        setBackgroundColor(0x00000000);
+
         status = 1;
         moveList.clear();
         if (mRedPacketInfos != null && mRedPacketInfos.size() > 0) {
@@ -159,6 +248,7 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
     }
 
     public void resume() {
+        Log.d(TAG+"bbbbbbbb", "resume() called");
         drawHandler.sendEmptyMessage(DrawHandler.START_DRAW_KEY);
     }
 
@@ -198,6 +288,8 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
             return;
         }
 
+
+
         m_fontSize = mContext.getResources().getDimension(R.dimen.reading_default_text_size);
 
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);// 画笔
@@ -211,7 +303,15 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
 
         Paint paint = new Paint();
         paint.setAntiAlias(true);
+
+        //--------------------绘制背景--------------------
         canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
+        canvas.drawColor(0xFFEE5859);
+
+        canvas.drawBitmap(getBgBitmap1(), width - getBgBitmap1().getWidth(), getBgBitmap1().getHeight() / 2, null);
+        canvas.drawBitmap(getBgBitmap2(), 0, height - getBgBitmap2().getHeight() + 10, null);
+
+        //--------------------绘制背景end--------------------
 
         if (moveList != null) {
 
@@ -221,8 +321,6 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
                     status = 0;//状态改为0，在更新数据时，会调用start方法
                 }
 
-                Log.d(TAG, "startDraw:通知刷新数据moveList.size()=" + moveList.size() + ",viewCount=" + viewCount);
-
 
                 if (mListener != null) {
                     long currentTime = System.currentTimeMillis();
@@ -230,9 +328,11 @@ public class RedPacketView extends SurfaceView implements DrawInterface {
                         Log.d(TAG, "startDraw:通知刷新数据");
                         notifyTime = System.currentTimeMillis();
                         mListener.notifyLoadRedPacket();//通知刷新数据
+                        Log.d(TAG, "startDraw:通知刷新数据moveList.size()=" + moveList.size() + ",viewCount=" + viewCount);
                     }
                 }
             }
+
 
             for (int i = 0; i < moveList.size(); i++) {
 

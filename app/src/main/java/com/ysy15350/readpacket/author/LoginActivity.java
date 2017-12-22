@@ -99,6 +99,9 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
         //
     }
 
+
+
+
     @Override
     public void loginCallback(boolean isCache, Response response) {
         try {
@@ -150,6 +153,7 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
                         UserInfo userInfo = response.getData(UserInfo.class);
 
                         if (userInfo != null) {
+                            userInfo.setIsLogin(1);
                             BaseData.getInstance().setUserInfo(userInfo);
                         }
 
@@ -208,6 +212,53 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
         startActivity(intent);
 
         this.finish();
+    }
+
+    /**
+     * 支付宝登录
+     * @param view
+     */
+    @Event(value = R.id.ll_ali_login)
+    private void ll_ali_loginClick(View view) {
+        mPresenter.authV2();
+    }
+
+    @Override
+    public void oauth_tokenCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+                        UserInfo userInfo = response.getData(UserInfo.class);
+
+                        if (userInfo != null) {
+                            String token= userInfo.getToken();
+                            if(!CommFun.isNullOrEmpty(token)){
+                                BaseData.setToken(token);
+                                mPresenter.activate();
+                            }
+                            userInfo.setIsLogin(1);
+                            BaseData.getInstance().setUserInfo(userInfo);
+                        }
+
+                        //gotoMainActivity();
+
+                    }
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

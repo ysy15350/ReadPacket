@@ -30,7 +30,6 @@ import base.model.UserInfo;
 import base.mvp.MVPBaseActivity;
 import common.CommFun;
 import common.message.MessageBox;
-import custom_view.dialog.ConfirmDialog;
 
 @ContentView(R.layout.activity_hand_out_red_packet)
 public class HandOutRedPacketActivity extends MVPBaseActivity<HandOutRedPacketViewInterface, HandOutRedPacketPresenter> implements HandOutRedPacketViewInterface {
@@ -345,7 +344,7 @@ public class HandOutRedPacketActivity extends MVPBaseActivity<HandOutRedPacketVi
             UserInfo userInfo = BaseData.getInstance().getUserInfo();
             if (userInfo != null) {
                 if (price > userInfo.getAccount()) {
-                    showMsg("余额不足,请充值");
+                    showMsg("您的余额不足,请充值");
                     return;
                 } else {
                     showWaitDialog("服务器处理中...");
@@ -376,20 +375,24 @@ public class HandOutRedPacketActivity extends MVPBaseActivity<HandOutRedPacketVi
 
                         mPresenter.getGrabChanceCount();
 
-                        ConfirmDialog dialog = new ConfirmDialog(this, "系统提示", "发送成功，再发一个？", "再发一个", "下次再发");
-                        dialog.setDialogListener(new ConfirmDialog.DialogListener() {
-                            @Override
-                            public void onCancelClick() {
-                                HandOutRedPacketActivity.this.finish();
-                            }
+                        showMsg(msg);
 
-                            @Override
-                            public void onOkClick() {
+                        HandOutRedPacketActivity.this.finish();
 
-                            }
-                        });
-
-                        dialog.show();
+//                        ConfirmDialog dialog = new ConfirmDialog(this, "系统提示", "发送成功，再发一个？", "再发一个", "下次再发");
+//                        dialog.setDialogListener(new ConfirmDialog.DialogListener() {
+//                            @Override
+//                            public void onCancelClick() {
+//                                HandOutRedPacketActivity.this.finish();
+//                            }
+//
+//                            @Override
+//                            public void onOkClick() {
+//
+//                            }
+//                        });
+//
+//                        dialog.show();
 
 
                     } else {

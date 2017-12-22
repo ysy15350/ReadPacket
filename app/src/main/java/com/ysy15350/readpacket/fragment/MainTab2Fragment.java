@@ -105,10 +105,12 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
 
         try {
             if (userInfo != null && mHolder != null) {
-                String nickName = userInfo.getNickname();
-                String str = CommFun.isNullOrEmpty(nickName) ? "未设置昵称" : nickName;
-                mHolder.setText(R.id.tv_nickName, str)
-                        .setText(R.id.tv_mobile, userInfo.getMobile())
+
+                String nickName = CommFun.isNullOrEmpty(userInfo.getNickname()) ? "未设置昵称" : userInfo.getNickname();
+                String mobile = CommFun.isNullOrEmpty(userInfo.getMobile()) ? (isLogin() ? "未绑定手机号" : "点击登录") : userInfo.getMobile();
+
+                mHolder.setText(R.id.tv_nickName, nickName)
+                        .setText(R.id.tv_mobile, mobile)
                         .setText(R.id.tv_account, userInfo.getAccount() + "")
                         .setText(R.id.tv_balance, userInfo.getAccount() + "")
                         .setText(R.id.tv_chance_count, userInfo.getGrabchancecount() + " 次")
@@ -118,6 +120,10 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
                 if (userInfo.getHeadimg() != 0) {
                     headImgUrl += userInfo.getHeadimg();
                     mHolder.setImageURL(R.id.img_head, headImgUrl, true);
+                } else if (!CommFun.isNullOrEmpty(userInfo.getHeadimgurl())) {
+                    mHolder.setImageURL(R.id.img_head, userInfo.getHeadimgurl(), true);
+                } else if (!CommFun.isNullOrEmpty(userInfo.getAvatar())) {
+                    mHolder.setImageURL(R.id.img_head, userInfo.getAvatar(), true);
                 }
 
             }
