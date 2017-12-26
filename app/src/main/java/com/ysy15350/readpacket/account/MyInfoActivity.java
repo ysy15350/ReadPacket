@@ -12,6 +12,7 @@ import com.jph.takephoto.model.TImage;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.ysy15350.readpacket.R;
+import com.ysy15350.readpacket.author.BindMobileActivity;
 import com.ysy15350.readpacket.author.UpdatePwdActivity;
 import com.ysy15350.readpacket.image_choose.ImgSelectActivity;
 
@@ -71,6 +72,9 @@ public class MyInfoActivity extends MVPBaseActivity<MyInfoViewInterface, MyInfoP
         setMenuText("保存");
     }
 
+    UserInfo mUserInfo;
+
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -116,15 +120,31 @@ public class MyInfoActivity extends MVPBaseActivity<MyInfoViewInterface, MyInfoP
     private void bindUserInfo(UserInfo userInfo) {
 
         try {
+
+            mUserInfo = userInfo;
+
             if (userInfo != null && mHolder != null) {
+
 
                 if (userInfo.getHeadimg() != 0) {
                     String img_headUrl = ConfigHelper.getServerImageUrl() + userInfo.getHeadimg();
                     mHolder.setImageURL(R.id.img_head, img_headUrl);
                 }
 
+                String tv_mobileStr = "点击绑定手机号";
+                if (!CommFun.isNullOrEmpty(userInfo.getMobile())) {
+                    tv_mobileStr = CommFun.getPhone(userInfo.getMobile());
+                }
+
+                String alipayStr = "点击绑定支付宝";
+                if (!CommFun.isNullOrEmpty(userInfo.getUseridalipay())) {
+                    alipayStr = "已绑定";
+                }
+                mHolder.setText(R.id.tv_alipay, alipayStr);
+
                 mHolder.setText(R.id.et_nickName, userInfo.getNickname())
-                        .setText(R.id.et_mobile, userInfo.getMobile());
+                        .setText(R.id.et_realName, userInfo.getRealname())
+                        .setText(R.id.tv_mobile, tv_mobileStr);
 
                 String headImgUrl = ConfigHelper.getServerImageUrl();
                 if (userInfo.getHeadimg() != 0) {
@@ -205,6 +225,39 @@ public class MyInfoActivity extends MVPBaseActivity<MyInfoViewInterface, MyInfoP
 
 
     /**
+     * 绑定手机号
+     *
+     * @param view
+     */
+    @Event(value = R.id.tv_mobile)
+    private void tv_mobileClick(View view) {
+
+        if (mUserInfo != null) {
+
+            if (CommFun.isNullOrEmpty(mUserInfo.getMobile())) {
+
+
+                Intent intent = new Intent(this, BindMobileActivity.class);
+
+                startActivity(intent);
+
+            }
+        }
+
+    }
+
+    /**
+     * 绑定支付宝
+     *
+     * @param view
+     */
+    @Event(value = R.id.ll_menu_4)
+    private void ll_menu_4Click(View view) {
+        mPresenter.authV2();
+    }
+
+
+    /**
      * 修改密码
      *
      * @param view
@@ -235,11 +288,14 @@ public class MyInfoActivity extends MVPBaseActivity<MyInfoViewInterface, MyInfoP
 
         String headimgurl = "";
         String nickname = mHolder.getViewText(R.id.et_nickName);
+        String realName = mHolder.getViewText(R.id.et_realName);
 
         UserInfo userInfo = BaseData.getInstance().getUserInfo();
         if (userInfo != null) {
             userInfo.setHeadimgurl(headimgurl);
             userInfo.setNickname(nickname);
+            userInfo.setRealname(realName);
+
 
 //            BaseData.setCache("img_head", response.getBodyJson());
             String img_headJson = BaseData.getCache("img_head");
@@ -375,6 +431,43 @@ public class MyInfoActivity extends MVPBaseActivity<MyInfoViewInterface, MyInfoP
                 }
             } else {
                 showMsg("系统错误");
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void oauth_tokenCallback(boolean isCache, Response response) {
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+                        UserInfo userInfo = response.getData(UserInfo.class);
+
+                        if (userInfo != null) {
+                            userInfo.setIsLogin(1);
+                            BaseData.getInstance().setUserInfo(userInfo);
+
+                            bindUserInfo(userInfo);
+                        }
+
+                        //gotoMainActivity();
+
+                    }
+                    showMsg(msg);
+                }
             }
 
 

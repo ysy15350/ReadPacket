@@ -37,8 +37,9 @@ public class WithdrawPresenter extends BasePresenter<WithdrawViewInterface> {
      * @param price
      * @param bankcardId 银行卡ID
      */
-    public void withdraw(int price, int bankcardId) {
-        accountApi.withdraw(price, bankcardId, new ApiCallBack() {
+    public void withdraw(int type, String alipayAccount, int price, int bankcardId, String realname) {
+        // type:1:支付宝(绑定账号，通过id)；2；支付宝（通过账号，如邮箱）；3；银行卡
+        accountApi.withdraw( type,  alipayAccount,  price,  bankcardId,  realname, new ApiCallBack() {
             @Override
             public void onSuccess(boolean isCache, Response response) {
                 super.onSuccess(isCache, response);
@@ -46,6 +47,5 @@ public class WithdrawPresenter extends BasePresenter<WithdrawViewInterface> {
             }
         });
     }
-
 
 }

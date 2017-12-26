@@ -102,6 +102,25 @@ public class UserApiImpl implements UserApi {
     }
 
     @Override
+    public void loginout(ApiCallBack callBack) {
+        try {
+            IServer server = new Request();
+
+            server.setMethodName(moduleName + "loginout");
+
+            server.setParam("platform", 1);
+            server.setParam("deviceId", CommFunAndroid.getSharedPreferences("device_id"));//CommFunAndroid.setSharedPreferences("device_id", deviceId);
+
+            server.setApiCallBack(callBack);
+
+            server.request();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void activate(ApiCallBack callBack) {
         try {
             IServer server = new Request();
@@ -149,7 +168,26 @@ public class UserApiImpl implements UserApi {
 
             server.setMethodName(moduleName + "saveUserInfo");
             server.setParam("nickName", userInfo.getNickname());
+            server.setParam("realName", userInfo.getRealname());
             server.setParam("headimg", userInfo.getHeadimg());
+            server.setApiCallBack(callBack);
+
+            server.request();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateMobile(String mobile, String code, ApiCallBack callBack) {
+        try {
+
+            IServer server = new Request();
+
+            server.setMethodName(moduleName + "updateMobile");
+            server.setParam("mobile", mobile);
+            server.setParam("code", code);
             server.setApiCallBack(callBack);
 
             server.request();

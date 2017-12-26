@@ -117,10 +117,19 @@
 
         <!-- 注册 -->
         <activity
-            android:name=".author.RegisterActivity"
+        android:name=".author.RegisterActivity"
+        android:configChanges="orientation|keyboardHidden|screenSize"
+        android:launchMode="singleTask"
+        android:screenOrientation="portrait" />
+
+        <!--绑定手机号-->
+        <activity
+            android:name=".author.BindMobileActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+
 
         <!-- 修改密码 -->
         <activity

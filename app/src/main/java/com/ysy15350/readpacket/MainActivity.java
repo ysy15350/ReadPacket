@@ -32,6 +32,8 @@ import org.xutils.view.annotation.ViewInject;
 import java.util.ArrayList;
 import java.util.List;
 
+import api.base.model.Response;
+import api.base.model.ResponseHead;
 import api.model.ShareInfo;
 import api.model.ShareModel;
 import base.data.BaseData;
@@ -325,12 +327,40 @@ public class MainActivity extends MVPBaseActivity<MainViewInterface, MainPresent
                 // TestService.class));// stop
 
                 // CommFunAndroid.setSharedPreferences("JSESSIONID", "");
+                mPresenter.loginout();
 
-                ExitApplication.getInstance().exit();
+
             }
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    @Override
+    public void loginoutCallback(boolean isCache, Response response) {
+
+        try {
+
+            hideWaitDialog();
+
+
+            if (response != null) {
+                ResponseHead responseHead = response.getHead();
+                if (responseHead != null) {
+                    int status = responseHead.getResponse_status();
+                    String msg = responseHead.getResponse_msg();
+                    if (status == 100) {
+
+                        ExitApplication.getInstance().exit();
+                    }
+                    showMsg(msg);
+                }
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void showExitPop() {

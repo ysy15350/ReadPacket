@@ -4,6 +4,7 @@ package com.ysy15350.readpacket.author;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 
@@ -98,8 +99,6 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
         // 调用presenter的获取数据方法，在presenter类中调用bindData接口，本类实现了bindData方法
         //
     }
-
-
 
 
     @Override
@@ -216,11 +215,23 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
 
     /**
      * 支付宝登录
+     *
      * @param view
      */
     @Event(value = R.id.ll_ali_login)
     private void ll_ali_loginClick(View view) {
         mPresenter.authV2();
+    }
+
+
+    @Override
+    public void AuthResult(String resultStatus, String resultCode, String msg) {
+        if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(resultCode, "200")) {
+            showWaitDialog("支付宝授权成功，请等待服务器验证");
+            mPresenter.oauth_token();//服务器验证
+        } else {
+            showMsg("支付宝授权失败");
+        }
     }
 
     @Override
@@ -240,18 +251,20 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
                         UserInfo userInfo = response.getData(UserInfo.class);
 
                         if (userInfo != null) {
-                            String token= userInfo.getToken();
-                            if(!CommFun.isNullOrEmpty(token)){
+                            userInfo.setIsLogin(1);
+                            BaseData.getInstance().setUserInfo(userInfo);
+
+                            String token = userInfo.getToken();
+                            if (!CommFun.isNullOrEmpty(token)) {
                                 BaseData.setToken(token);
                                 mPresenter.activate();
                             }
-                            userInfo.setIsLogin(1);
-                            BaseData.getInstance().setUserInfo(userInfo);
+
                         }
 
                         //gotoMainActivity();
-
-                    }
+                    } else
+                        showMsg(msg);
                 }
             }
 
@@ -270,7 +283,6 @@ public class LoginActivity extends MVPBaseActivity<LoginViewInterface, LoginPres
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
 
 
         if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {

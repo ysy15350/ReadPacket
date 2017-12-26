@@ -13,10 +13,12 @@ import org.xutils.view.annotation.Event;
 import java.io.File;
 
 import api.FileApi;
+import api.UserApi;
 import api.base.model.ApiCallBack;
 import api.base.model.Response;
 import api.base.model.ResponseHead;
 import api.impl.FileApiImpl;
+import api.impl.UserApiImpl;
 import api.model.FileInfo;
 import base.BaseActivity;
 import base.data.BaseData;
@@ -137,6 +139,8 @@ public class SettingActivity extends BaseActivity {
         }
     }
 
+    UserApi userApi = new UserApiImpl();
+
     /**
      * 注销
      *
@@ -154,6 +158,14 @@ public class SettingActivity extends BaseActivity {
 //            JPushInterface.deleteAlias(getApplicationContext(), userInfo.getId());//删除别名，LoginActivity登录成功添加的别名
 //
 //        }
+
+        userApi.loginout(new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+            }
+        });
+
 
         Intent intent = getIntent();
         setResult(1, intent);//让主页关闭

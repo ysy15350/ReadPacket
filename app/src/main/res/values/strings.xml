@@ -54,7 +54,7 @@
 
     <!--个人中心菜单-->
     <string name="myinfo_title1">头像</string>
-    <string name="myinfo_title2">姓名</string>
+    <string name="myinfo_title2">姓名(提现需要)</string>
     <string name="myinfo_title2_1">昵称</string>
     <string name="myinfo_title3">身份证号码</string>
     <string name="myinfo_title4">支付宝绑定</string>

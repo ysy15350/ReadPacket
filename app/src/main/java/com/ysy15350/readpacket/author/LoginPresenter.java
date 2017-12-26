@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.alipay.sdk.app.AuthTask;
 
@@ -23,6 +22,7 @@ import api.base.model.Response;
 import api.impl.AliPayApiImpl;
 import api.impl.UserApiImpl;
 import base.mvp.BasePresenter;
+import common.message.MessageBox;
 import common.string.JsonConvertor;
 
 public class LoginPresenter extends BasePresenter<LoginViewInterface> {
@@ -37,7 +37,7 @@ public class LoginPresenter extends BasePresenter<LoginViewInterface> {
 
     UserApi userApi = new UserApiImpl();
 
-    AliPayApi aliPayApi=new AliPayApiImpl();
+    AliPayApi aliPayApi = new AliPayApiImpl();
 
     public void login(String mobile, String password) {
         userApi.login(mobile, password, new ApiCallBack() {
@@ -138,18 +138,23 @@ public class LoginPresenter extends BasePresenter<LoginViewInterface> {
                     if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
                         // 获取alipay_open_id，调支付时作为参数extern_token 的value
                         // 传入，则支付账户为该授权账户
-                        Toast.makeText(mContext,
-                                "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT)
-                                .show();
+//                        Toast.makeText(mContext,
+//                                "授权成功\n" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT)
+//                                .show();
+                        //MessageBox.show("支付宝授权成功，请等待服务器验证");
+                        auth_code = authResult.getAuthCode();
+                        userid = authResult.getUser_id();
+                        mView.AuthResult(resultStatus, authResult.getResultCode(), "支付宝授权成功，请等待服务器验证");
 
-                        String auth_code=authResult.getAuthCode();
-                        String userid=authResult.getUser_id();
-                        oauth_token(auth_code,userid);
+
+//                        oauth_token(auth_code, userid);
 
                     } else {
+                        mView.AuthResult(resultStatus, authResult.getResultCode(), "支付宝授权成功，请等待服务器验证");
                         // 其他状态值则为授权失败
-                        Toast.makeText(mContext,
-                                "授权失败" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT).show();
+//                        MessageBox.show("支付宝授权失败");
+//                        Toast.makeText(mContext,
+//                                "授权失败" + String.format("authCode:%s", authResult.getAuthCode()), Toast.LENGTH_SHORT).show();
 
                     }
                     break;
@@ -157,15 +162,21 @@ public class LoginPresenter extends BasePresenter<LoginViewInterface> {
                 default:
                     break;
             }
-        };
+        }
+
+        ;
     };
 
-    public void oauth_token(String auth_code,String userid){
+    private static String auth_code, userid;
+
+
+    //String auth_code, String userid
+    public void oauth_token() {
         aliPayApi.oauth_token(auth_code, userid, new ApiCallBack() {
             @Override
             public void onSuccess(boolean isCache, Response response) {
                 super.onSuccess(isCache, response);
-                mView.oauth_tokenCallback(isCache,response);
+                mView.oauth_tokenCallback(isCache, response);
             }
         });
     }

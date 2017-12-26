@@ -2,12 +2,14 @@ package com.ysy15350.readpacket.fragment;
 
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.ArrayMap;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
 import com.ysy15350.readpacket.R;
+import com.ysy15350.readpacket.dialog.RuleDialog;
 import com.ysy15350.readpacket.red_packet.HandOutRedPacketActivity;
 import com.ysy15350.readpacket.red_packet.RedPacketDetailActivity;
 
@@ -19,12 +21,13 @@ import java.util.List;
 
 import api.base.model.Response;
 import api.base.model.ResponseHead;
-import api.model.RedPacketDetail;
 import api.model.RedPacketInfo;
 import base.data.BaseData;
 import base.model.UserInfo;
 import base.mvp.MVPBaseFragment;
+import common.CommFun;
 import common.CommFunAndroid;
+import common.string.JsonConvertor;
 import custom_view.TextSwitchView;
 import custom_view.pop.PopRedPacket;
 import custom_view.red_packet.MoveModel;
@@ -83,6 +86,8 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 showWaitDialog("红包加载中...");
                 updateUserInfo();
                 getRedPacketList();
+                mPresenter.getSystemConfig();
+                mPresenter.noticeInfo();
             }
         });
 
@@ -114,9 +119,13 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                 getRedPacketList();
             }
 
-            updateUserInfo();
+            setTextSwitch("红包新玩法,红包抢不停");
 
-            setTextSwitch("旺财红包,红包抢不停,红包新玩法");
+            updateUserInfo();
+            bindRuleInfo();//绑定红包规则
+            bindNotice();//绑定通知
+            mPresenter.getSystemConfig();
+            mPresenter.noticeInfo();
 
 
         } catch (Exception e) {
@@ -141,7 +150,10 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
 
         try {
             if (userInfo != null) {
-                mHolder.setText(R.id.btn_createRedPacket, String.format("发红包(%d)", userInfo.getGrabchancecount()));
+                String red_packet_info = String.format("共抢到%d个红包，合计%.2f元", userInfo.getRedpacketCount(), userInfo.getAccountRedpacket());
+                mHolder
+                        .setText(R.id.tv_red_packet_info, red_packet_info)
+                        .setText(R.id.btn_createRedPacket, String.format("发红包(%d)", userInfo.getGrabchancecount()));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -296,8 +308,21 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     @Event(value = R.id.ll_rule)
     private void ll_ruleRedPacketClick(View view) {
 
-        showMsg("规则");
+        if (!CommFun.isNullOrEmpty(mRuleStr)) {
 
+            showRuleDialog(mRuleStr);
+        }
+
+    }
+
+    /**
+     * 红包规则
+     *
+     * @param content
+     */
+    private void showRuleDialog(String content) {
+        RuleDialog ruleDialog = new RuleDialog(getActivity(), content);
+        ruleDialog.show();
     }
 
 
@@ -356,17 +381,19 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
                         if (redPacketInfo != null) {
 
                             mRedPacketInfo = redPacketInfo;
+
+                            if (mRedPacketView != null) {
+                                mRedPacketView.removeGrabedRedPacket(mRedPacketInfo);
+                            }
+
+
                             if (isLogin(true)) {
 
-                                UserInfo userInfo = BaseData.getInstance().getUserInfo();
-                                if (userInfo != null) {
-                                    if (userInfo.getAccount() >= redPacketInfo.getPrice()) {
-                                        showWaitDialog("服务器处理中...");
-                                        mPresenter.grabRedPacket(redPacketInfo.getId());
-                                    } else {
-                                        showMsg("");
-                                    }
-                                }
+                                Intent intent = new Intent(getActivity(), RedPacketDetailActivity.class);
+                                intent.putExtra("redPacketInfo", redPacketInfo);
+                                startActivity(intent);
+
+
                             }
                         }
                     }
@@ -382,35 +409,117 @@ public class MainTab1Fragment extends MVPBaseFragment<MainTab1ViewInterface, Mai
     }
 
 
+//    @Override
+//    public void grabRedPacketCallback(boolean isCache, Response response) {
+//        hideWaitDialog();
+//
+//
+//
+//        try {
+//            if (response != null) {
+//                ResponseHead head = response.getHead();
+//                if (head != null) {
+//                    int code = head.getResponse_status();
+//                    String msg = head.getResponse_msg();
+//                    if (code == 100) {
+//                        //抢到的红包明细
+//                        RedPacketDetail redPacketDetail = response.getData(RedPacketDetail.class);
+//                        if (redPacketDetail != null) {
+//
+//                            Intent intent = new Intent(getActivity(), RedPacketDetailActivity.class);
+//                            intent.putExtra("redPacketDetail", redPacketDetail);
+//                            startActivity(intent);
+//                        }
+//                    } else {
+//                        //
+//                        showMsg(msg);
+//                    }
+//                }
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
-    public void grabRedPacketCallback(boolean isCache, Response response) {
-        hideWaitDialog();
+    public void getSystemConfigCallback(boolean isCache, Response response) {
 
-        if (mRedPacketView != null) {
-            mRedPacketView.removeGrabedRedPacket(mRedPacketInfo);
-        }
+        try {
+            if (response != null) {
+                ResponseHead head = response.getHead();
+                if (head != null) {
+                    int code = head.getResponse_status();
+                    String msg = head.getResponse_msg();
+                    if (code == 100) {
+                        BaseData.setCache("systemConfig", response.getBodyJson());
+//                        ArrayMap<String,String> configMap=response.getData(new TypeToken<ArrayMap<String,String>>(){}.getType());
 
-        if (response != null) {
-            ResponseHead head = response.getHead();
-            if (head != null) {
-                int code = head.getResponse_status();
-                String msg = head.getResponse_msg();
-                if (code == 100) {
-                    //抢到的红包明细
-                    RedPacketDetail redPacketDetail = response.getData(RedPacketDetail.class);
-                    if (redPacketDetail != null) {
+                        bindRuleInfo();
 
-                        Intent intent = new Intent(getActivity(), RedPacketDetailActivity.class);
-                        intent.putExtra("redPacketDetail", redPacketDetail);
-                        startActivity(intent);
+                    } else {
+                        //
+                        showMsg(msg);
                     }
-                } else {
-                    //
-                    showMsg(msg);
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    String mRuleStr;
+
+    /**
+     * 绑定规则
+     */
+    private void bindRuleInfo() {
+        String systemConfigJsonStr = BaseData.getCache("systemConfig");
+        if (!CommFun.isNullOrEmpty(systemConfigJsonStr)) {
+            ArrayMap<String, String> configMap = JsonConvertor.fromJson(systemConfigJsonStr, new TypeToken<ArrayMap<String, String>>() {
+            }.getType());
+            if (configMap != null) {
+                mRuleStr = configMap.get("rule");
             }
         }
     }
 
+    @Override
+    public void noticeInfoCallback(boolean isCache, Response response) {
+        try {
+            if (response != null) {
+                ResponseHead head = response.getHead();
+                if (head != null) {
+                    int code = head.getResponse_status();
+                    String msg = head.getResponse_msg();
+                    if (code == 100) {
+                        BaseData.setCache("noticeInfo", response.getBodyJson());
 
+                        bindNotice();
+                    } else {
+                        //
+                        showMsg(msg);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 绑定通知消息
+     */
+    private void bindNotice() {
+        String noticeInfoJsonStr = BaseData.getCache("noticeInfo");
+        if (!CommFun.isNullOrEmpty(noticeInfoJsonStr)) {
+            ArrayMap<String, String> noticeInfoMap = JsonConvertor.fromJson(noticeInfoJsonStr, new TypeToken<ArrayMap<String, String>>() {
+            }.getType());
+            if (noticeInfoMap != null) {
+                String ruleStr = noticeInfoMap.get("notice");
+                if (!CommFun.isNullOrEmpty(ruleStr)) {
+                    setTextSwitch(ruleStr);
+                }
+            }
+        }
+    }
 }

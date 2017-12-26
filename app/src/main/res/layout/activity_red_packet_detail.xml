@@ -8,6 +8,15 @@
 
     <include layout="@layout/form_head" />
 
+    <TextView
+        android:id="@+id/tv_red_packet_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp13"
+        android:text="0个红包共0.00元"
+        android:textColor="@color/text_title"
+        android:textSize="@dimen/sp26" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/dp20"
-            android:text="幸运数字："
+            android:text="我的幸运数字："
             android:textColor="@color/text_content"
             android:textSize="@dimen/sp22"
             android:textStyle="bold" />

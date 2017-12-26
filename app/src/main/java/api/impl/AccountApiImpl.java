@@ -54,14 +54,20 @@ public class AccountApiImpl implements AccountApi {
     }
 
     @Override
-    public void withdraw(int price, int bankcardId, ApiCallBack callBack) {
+    public void withdraw(int type, String alipayAccount, int price, int bankcardId, String realname, ApiCallBack callBack) {
         try {
             IServer server = new Request();
 
             server.setMethodName(moduleName + "withdraw");
 
+            // type:1:支付宝(绑定账号，通过id)；2；支付宝（通过账号，如邮箱）；3；银行卡
+
+            server.setParam("type", price);
+            server.setParam("alipayAccount", alipayAccount);
+            server.setParam("bankCardId", bankcardId);
+            server.setParam("realname", realname);
             server.setParam("price", price);
-            server.setParam("bankcardId", bankcardId);
+
 
             server.setApiCallBack(callBack);
 
@@ -71,6 +77,7 @@ public class AccountApiImpl implements AccountApi {
             e.printStackTrace();
         }
     }
+
 
     @Override
     public void getGrabChanceCount(ApiCallBack callBack) {
@@ -119,9 +126,9 @@ public class AccountApiImpl implements AccountApi {
 
             server.setParam("content", shareInfo.getContent());
             server.setParam("platform", shareInfo.getPlatform());
-            server.setParam("url",shareInfo.getUrl());
-            server.setParam("imageurl",shareInfo.getImageurl());
-            server.setParam("status",shareInfo.getStatus());
+            server.setParam("url", shareInfo.getUrl());
+            server.setParam("imageurl", shareInfo.getImageurl());
+            server.setParam("status", shareInfo.getStatus());
 
             server.setApiCallBack(callBack);
 

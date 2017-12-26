@@ -107,8 +107,12 @@ public class MainTab2Fragment extends MVPBaseFragment<MainTab2ViewInterface, Mai
             if (userInfo != null && mHolder != null) {
 
                 String nickName = CommFun.isNullOrEmpty(userInfo.getNickname()) ? "未设置昵称" : userInfo.getNickname();
-                String mobile = CommFun.isNullOrEmpty(userInfo.getMobile()) ? (isLogin() ? "未绑定手机号" : "点击登录") : userInfo.getMobile();
-
+                String mobile = userInfo.getMobile();
+                if (CommFun.isNullOrEmpty(mobile)) {
+                    mobile = CommFun.isNullOrEmpty(userInfo.getMobile()) ? (isLogin() ? "未绑定手机号" : "点击登录") : userInfo.getMobile();
+                } else {
+                    mobile = CommFun.getPhone(mobile);
+                }
                 mHolder.setText(R.id.tv_nickName, nickName)
                         .setText(R.id.tv_mobile, mobile)
                         .setText(R.id.tv_account, userInfo.getAccount() + "")

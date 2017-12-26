@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/base_form">
+
+    <include layout="@layout/form_head" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--个人资料-->
+
+        <LinearLayout style="@style/base_form">
+
+
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/title_phone" />
+
+                <EditText
+                    android:id="@+id/et_mobile"
+                    style="@style/base_edit"
+                    android:hint="请输入需要绑定的手机号"
+                    android:inputType="phone" />
+
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+            <!--验证码-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/update_pwd_title"
+                    android:text="@string/title_code" />
+
+                <EditText
+                    android:id="@+id/et_mobile_code"
+                    style="@style/base_edit"
+                    android:hint="请输入短信验证码"
+                    android:inputType="number" />
+
+                <Button
+                    android:id="@+id/btn_send_code"
+                    style="@style/btn_get_code"
+                    android:layout_height="@dimen/dp35"
+                    android:layout_marginStart="@dimen/dp13" />
+
+
+            </LinearLayout>
+
+            <View style="@style/view_line" />
+
+
+            <Button
+                android:id="@id/btn_ok"
+                style="@style/btn_ok"
+                android:layout_marginEnd="@dimen/dp13"
+                android:layout_marginStart="@dimen/dp13"
+                android:layout_marginTop="@dimen/dp30"
+                android:text="绑定" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

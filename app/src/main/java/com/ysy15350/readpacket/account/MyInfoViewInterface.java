@@ -10,4 +10,6 @@ public interface MyInfoViewInterface {
 
     public void imgUpCallback(boolean isCache, Response response);
 
+    public void oauth_tokenCallback(boolean isCache, Response response);
+
 }

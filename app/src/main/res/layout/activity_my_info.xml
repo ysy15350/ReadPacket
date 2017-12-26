@@ -46,60 +46,9 @@
 
                 <EditText
                     android:id="@+id/et_nickName"
-                    style="@style/my_info_edit" />
-
-            </LinearLayout>
-
-            <View style="@style/view_line" />
-
-            <!--身份证号-->
-            <LinearLayout
-                style="@style/my_info_item"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/my_info_title"
-                    android:text="@string/myinfo_title3" />
-
-                <EditText
-                    android:id="@+id/et_cardNo"
-                    style="@style/my_info_edit" />
-
-            </LinearLayout>
-
-            <View style="@style/view_line" />
-
-            <LinearLayout
-                style="@style/my_info_item"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/my_info_title"
-                    android:text="@string/myinfo_title4" />
-
-                <TextView
-                    style="@style/my_info_edit1"
-                    android:hint="立即绑定" />
-
-                <ImageView style="@style/item_right" />
-
-            </LinearLayout>
-
-            <View style="@style/view_line" />
-
-            <LinearLayout
-                style="@style/my_info_item"
-                android:visibility="gone">
-
-                <TextView
-                    style="@style/my_info_title"
-                    android:text="@string/myinfo_title5" />
-
-                <TextView
-                    style="@style/my_info_edit1"
-                    android:hint="立即绑定" />
-
-                <ImageView style="@style/item_right" />
+                    style="@style/my_info_edit"
+                    android:maxLines="1"
+                    android:singleLine="true" />
 
             </LinearLayout>
 
@@ -114,12 +63,53 @@
                     android:text="@string/myinfo_title7" />
 
                 <TextView
-                    android:id="@+id/et_mobile"
+                    android:id="@+id/tv_mobile"
                     style="@style/my_info_edit" />
 
             </LinearLayout>
 
+            <View
+                style="@style/view_line"
+                android:layout_marginTop="@dimen/dp20" />
+
+            <!--绑定支付宝-->
+            <LinearLayout
+                android:id="@+id/ll_menu_4"
+                style="@style/my_info_item">
+
+                <TextView
+                    style="@style/my_info_title"
+                    android:text="@string/myinfo_title4" />
+
+                <TextView
+                    android:id="@+id/tv_alipay"
+                    style="@style/my_info_edit1"
+                    android:text="未绑定" />
+
+                <ImageView style="@style/item_right" />
+
+            </LinearLayout>
+
             <View style="@style/view_line" />
+
+            <!--昵称-->
+            <LinearLayout style="@style/my_info_item">
+
+                <TextView
+                    style="@style/my_info_title"
+                    android:text="@string/myinfo_title2" />
+
+                <EditText
+                    android:id="@+id/et_realName"
+                    style="@style/my_info_edit"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+
+            <View style="@style/view_line" />
+
 
             <!--地址-->
             <LinearLayout

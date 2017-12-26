@@ -18,14 +18,11 @@ import org.xutils.view.annotation.ViewInject;
 
 import api.base.model.Response;
 import api.base.model.ResponseHead;
-import api.model.BankCardInfo;
 import base.data.BaseData;
-import base.data.ConfigHelper;
 import base.model.UserInfo;
 import base.mvp.MVPBaseActivity;
 import common.CommFun;
 import common.CommFunAndroid;
-import common.string.JsonConvertor;
 
 /**
  * 提现
@@ -108,12 +105,6 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
         super.onResume();
 
 
-        String bankCardInfoSelectJson = BaseData.getCache("bankCardInfoSelect");
-        if (!CommFun.isNullOrEmpty(bankCardInfoSelectJson)) {
-            BankCardInfo bankCardInfo = JsonConvertor.fromJson(bankCardInfoSelectJson, BankCardInfo.class);
-            bindBankCardInfo(bankCardInfo);
-        }
-
         mPresenter.userInfo();
 
     }
@@ -157,7 +148,15 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
     private void bindUserInfo(UserInfo userInfo) {
 
         try {
+            mUserInfo = userInfo;
             if (userInfo != null) {
+
+                String alipayStr = "点击绑定支付宝";
+                if (!CommFun.isNullOrEmpty(userInfo.getUseridalipay())) {
+                    alipayStr = "已绑定支付宝";
+                }
+                mHolder.setText(R.id.tv_alipay, alipayStr);
+
                 mHolder
                         .setText(R.id.tv_withdrawRate, String.format("（收取%.1f服务费）", userInfo.getWithdrawrate()))
                         .setText(R.id.tv_account, String.format("可用余额 %.2f 元", userInfo.getAccount()));
@@ -169,40 +168,25 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
 
     int mBankId = 0;
 
-    private void bindBankCardInfo(BankCardInfo bankCardInfo) {
-
-        try {
-            if (bankCardInfo != null) {
-                mBankId = bankCardInfo.getId();
-
-                String bankIcon = bankCardInfo.getBankIcon();
-                if (!CommFun.isNullOrEmpty(bankIcon)) {
-                    mHolder.setImageURL(R.id.img_bank, bankCardInfo.getBankIcon());
-                } else if (bankCardInfo.getBankIconId() != 0) {
-                    String url = ConfigHelper.getServerImageUrl();
-                    mHolder.setImageURL(R.id.img_bank, url + bankCardInfo.getBankIconId());
-                }
-
-                mHolder
-                        .setText(R.id.tv_bank, bankCardInfo.getBankname())
-                        .setText(R.id.tv_bank_card, bankCardInfo.getCardnum())
-                ;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
 
     /**
-     * 选择银行卡
+     * 绑定支付宝
      *
      * @param view
      */
-    @Event(value = R.id.ll_select_bank)
+    @Event(value = R.id.ll_bind_alipay)
     private void ll_select_bankClick(View view) {
-        Intent intent = new Intent(this, BankCardListActivity.class);
-        startActivityForResult(intent, 1);
+        if (mUserInfo != null) {
+
+            if (!CommFun.isNullOrEmpty(mUserInfo.getUseridalipay())) {
+                showMsg("您已绑定支付宝账号");
+            } else {
+                Intent intent = new Intent(this, MyInfoActivity.class);
+                startActivity(intent);
+            }
+
+        }
+
     }
 
 
@@ -217,8 +201,12 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
             }
 
             int price = CommFun.toInt32(et_price, 0);
-            if (mBankId == 0) {
-                showMsg("请选择银行卡");
+//            if (mBankId == 0) {
+//                showMsg("请选择银行卡");
+//                return;
+//            }
+            if (CommFun.isNullOrEmpty(mUserInfo.getUseridalipay())) {
+                showMsg("您还未绑定支付宝");
                 return;
             }
             if (price == 0) {
@@ -238,7 +226,12 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
             }
 
             showWaitDialog("服务器处理中，请稍后...");
-            mPresenter.withdraw(price, mBankId);
+
+            // type:1:支付宝(绑定账号，通过id)；2；支付宝（通过账号，如邮箱）；3；银行卡
+
+            //int type, String alipayAccount, int price, int bankcardId, String realname
+
+            mPresenter.withdraw(1, "", price, mBankId, "");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -284,16 +277,5 @@ public class WithdrawActivity extends MVPBaseActivity<WithdrawViewInterface, Wit
         this.finish();
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                BankCardInfo bankCardInfo = (BankCardInfo) data.getSerializableExtra("bankCardInfo");
-                BaseData.setCache("bankCardInfoSelect", JsonConvertor.toJson(bankCardInfo));
-                bindBankCardInfo(bankCardInfo);
-            }
-        }
-    }
 
 }

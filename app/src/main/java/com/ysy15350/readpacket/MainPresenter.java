@@ -4,11 +4,13 @@ import android.content.Context;
 
 import api.AccountApi;
 import api.FileApi;
+import api.UserApi;
 import api.base.model.ApiCallBack;
 import api.base.model.Response;
 import api.base.model.ResponseHead;
 import api.impl.AccountApiImpl;
 import api.impl.FileApiImpl;
+import api.impl.UserApiImpl;
 import api.model.FileInfo;
 import api.model.ShareInfo;
 import base.mvp.BasePresenter;
@@ -20,6 +22,7 @@ public class MainPresenter extends BasePresenter<MainViewInterface> {
 
     }
 
+    UserApi userApi = new UserApiImpl();
     FileApi fileApi = new FileApiImpl();
     AccountApi accountApi = new AccountApiImpl();
 
@@ -79,5 +82,18 @@ public class MainPresenter extends BasePresenter<MainViewInterface> {
         }
     }
 
+
+    /**
+     * 注销
+     */
+    public void loginout() {
+        userApi.loginout(new ApiCallBack() {
+            @Override
+            public void onSuccess(boolean isCache, Response response) {
+                super.onSuccess(isCache, response);
+                mView.loginoutCallback(isCache, response);
+            }
+        });
+    }
 
 }

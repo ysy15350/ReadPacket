@@ -5,7 +5,7 @@ import common.string.MD5Util;
 
 public class Config {
 
-    public final static boolean isDebug = true;
+    public final static boolean isDebug = false;
 
     /**
      * 私钥

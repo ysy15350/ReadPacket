@@ -46,6 +46,15 @@ public class UserInfo {
     @Column(name = "nickname")
     private String nickname;
 
+    @Column(name = "uuid")
+    private String uuid;//用户唯一标识
+
+    @Column(name = "useridalipay")
+    private String useridalipay;//支付宝用户id
+
+    @Column(name = "realname")
+    private String realname;//真实姓名
+
     @Column(name = "recommendationcode")
     private String recommendationcode;//推荐码
 
@@ -56,8 +65,30 @@ public class UserInfo {
     @Column(name = "cards")
     private String cards;
 
+    @Column(name = "redpacketCount")
+    private int redpacketCount;//抢到红包数量
+
     @Column(name = "account")
     private double account;//账户金额(最终金额)
+
+    @Column(name = "accountTotal")
+    private double accountTotal;//账户总额
+
+    @Column(name = "accountRedpacket")
+    private double accountRedpacket;
+
+    @Column(name = "accountRecharge")
+    private double accountRecharge;
+
+    @Column(name = "accountLuck")
+    private double accountLuck;
+
+    @Column(name = "accountShare")
+    private double accountShare;
+
+    @Column(name = "accountRefer")
+    private double accountRefer;
+
 
     @Column(name = "withdraw")
     private double withdraw;//提现金额
@@ -184,6 +215,30 @@ public class UserInfo {
         this.nickname = nickname;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getUseridalipay() {
+        return useridalipay;
+    }
+
+    public void setUseridalipay(String useridalipay) {
+        this.useridalipay = useridalipay;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
     public String getRecommendationcode() {
         return recommendationcode;
     }
@@ -208,12 +263,68 @@ public class UserInfo {
         this.cards = cards;
     }
 
+    public int getRedpacketCount() {
+        return redpacketCount;
+    }
+
+    public void setRedpacketCount(int redpacketCount) {
+        this.redpacketCount = redpacketCount;
+    }
+
     public double getAccount() {
         return account;
     }
 
     public void setAccount(double account) {
         this.account = account;
+    }
+
+    public double getAccountTotal() {
+        return accountTotal;
+    }
+
+    public void setAccountTotal(double accountTotal) {
+        this.accountTotal = accountTotal;
+    }
+
+    public double getAccountRedpacket() {
+        return accountRedpacket;
+    }
+
+    public void setAccountRedpacket(double accountRedpacket) {
+        this.accountRedpacket = accountRedpacket;
+    }
+
+    public double getAccountRecharge() {
+        return accountRecharge;
+    }
+
+    public void setAccountRecharge(double accountRecharge) {
+        this.accountRecharge = accountRecharge;
+    }
+
+    public double getAccountLuck() {
+        return accountLuck;
+    }
+
+    public void setAccountLuck(double accountLuck) {
+        this.accountLuck = accountLuck;
+    }
+
+    public double getAccountShare() {
+        return accountShare;
+    }
+
+    public void setAccountShare(double accountShare) {
+        this.accountShare = accountShare;
+    }
+
+    public double getAccountRefer() {
+        return accountRefer;
+    }
+
+    public void setAccountRefer(double accountRefer) {
+        this.accountRefer = accountRefer;
     }
 
     public double getWithdraw() {

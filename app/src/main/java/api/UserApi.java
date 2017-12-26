@@ -21,13 +21,14 @@ public interface UserApi {
 
     /**
      * 用户注册
+     *
      * @param mobile
      * @param password
      * @param code
      * @param refereeCode
      * @param callBack
      */
-    public void register(String mobile, String password, String code,String refereeCode, ApiCallBack callBack);
+    public void register(String mobile, String password, String code, String refereeCode, ApiCallBack callBack);
 
     /**
      * 登录
@@ -37,6 +38,12 @@ public interface UserApi {
      * @param callBack
      */
     public void login(String mobile, String password, ApiCallBack callBack);
+
+    /**
+     * 注销
+     * @param callBack
+     */
+    public void loginout(ApiCallBack callBack);
 
     /**
      * 激活账户
@@ -59,6 +66,16 @@ public interface UserApi {
      * @param callBack
      */
     public void saveUserInfo(UserInfo userInfo, ApiCallBack callBack);
+
+
+    /**
+     * 修改手机号
+     *
+     * @param mobile
+     * @param code
+     * @param callBack
+     */
+    public void updateMobile(String mobile, String code, ApiCallBack callBack);
 
 
     /**
